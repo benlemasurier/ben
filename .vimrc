@@ -7,7 +7,16 @@ colorscheme wombat
 " line numbers
 set nu
 
+" show the nasties
+set list
+set lcs=tab:>.      " tabs
+set lcs+=trail:·    " trailing spaces
+set lcs+=extends:#  " line wrap
+set lcs+=nbsp:.     " non-breaking spaces
+
 " indentation
+filetype plugin on
+filetype indent on
 set autoindent
 set smartindent
 set tabstop=2
