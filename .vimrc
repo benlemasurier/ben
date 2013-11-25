@@ -3,7 +3,6 @@ syntax on
 "colorscheme desert
 colorscheme wombat
 
-
 " line numbers
 set nu
 
@@ -73,5 +72,14 @@ set title
 
 " gui
 set guioptions=aegimrLt
-set gfn=Monospace\ 9
-set gfn=ProggyCleanTT\ 12
+set gfn=Monospace\ 8
+"set gfn=ProggyCleanTT\ 12
+
+" LESS = .css
+autocmd BufRead,BufNewFile *.less set filetype=css
+
+" don't highlight html links
+hi link htmlLink NONE
+
+" remove trailing spaces on save
+autocmd BufWritePre * kz|:%s/\s\+$//e|'z
