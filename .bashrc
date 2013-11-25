@@ -54,14 +54,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -71,10 +63,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-alias dev='ssh -X ben@ben-dev'
-alias random_password='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c8 && echo'
-export PATH=$PATH:/var/lib/gems/1.8/bin/
-
 # ec2
 source ~/.aws_keys
 
@@ -82,3 +70,13 @@ source ~/.aws_keys
 DEBEMAIL="ben.lemasurier@gmail.com"
 DEBFULLNAME="Ben LeMasurier"
 export DEBEMAIL DEBFULLNAME
+
+# chef
+export PATH="/opt/chef/embedded/bin:$PATH"
+export OPSCODE_USER="ben___"
+
+#
+alias dev='ssh -X ben@ben-dev'
+alias random_password='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c8 && echo'
+
+export EDITOR=vim
