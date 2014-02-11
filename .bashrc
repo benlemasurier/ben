@@ -63,6 +63,12 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# run the previous command with sudo
+alias please="sudo !!"
+
+# serve
+alias serve="python -m SimpleHTTPServer"
+
 # ec2
 source ~/.aws_keys
 
@@ -80,3 +86,9 @@ alias dev='ssh -X ben@ben-dev'
 alias random_password='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c8 && echo'
 
 export EDITOR=vim
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
