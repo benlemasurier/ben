@@ -83,3 +83,43 @@ hi link htmlLink NONE
 
 " remove trailing spaces on save
 autocmd BufWritePre * kz|:%s/\s\+$//e|'z
+
+" encrypted editing
+augroup CPT
+  au!
+  au BufReadPre *.cpt set bin
+  au BufReadPre *.cpt set viminfo=
+  au BufReadPre *.cpt set noswapfile
+  au BufReadPost *.cpt let $vimpass = inputsecret("Password: ")
+  au BufReadPost *.cpt silent '[,']!ccrypt -cb -E vimpass
+  au BufReadPost *.cpt set nobin
+  au BufWritePre *.cpt set bin
+  au BufWritePre *.cpt '[,']!ccrypt -e -E vimpass
+  au BufWritePost *.cpt u
+  au BufWritePost *.cpt set nobin
+  au BufWritePost *.cpt set spell
+augroup END
+
+func! WordProcessorMode()
+  setlocal formatoptions=1
+  set formatoptions+=t
+  setlocal noexpandtab
+  map j gj
+  map k gk
+  setlocal spell spelllang=en_us
+  set complete+=s
+  set formatprg=par
+  setlocal wrap
+  setlocal linebreak
+  set textwidth=74
+  set lcs=tab: .
+endfu
+com! WP call WordProcessorMode()
+
+if $COLORTERM == 'gnome-terminal'
+    set t_Co=256
+endif
+
+" pathogen
+execute pathogen#infect()
+filetype plugin indent on
