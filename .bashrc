@@ -91,4 +91,7 @@ alias random_password='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c8 && echo'
 
 export EDITOR=vim
 
+# golang
+export GOPATH=$HOME/code/go
+
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
