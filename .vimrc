@@ -84,6 +84,9 @@ hi link htmlLink NONE
 " remove trailing spaces on save
 autocmd BufWritePre * kz|:%s/\s\+$//e|'z
 
+" tabs are ok for golang
+autocmd BufRead,BufNewFile *.go set nolist
+
 " encrypted editing
 augroup CPT
   au!
