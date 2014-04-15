@@ -1,0 +1,13 @@
+[user]
+  name = Ben LeMasurier
+  email = ben.lemasurier@gmail.com
+[push]
+  default = simple
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+[alias]
+  co = checkout
+  br = branch
+  s = status
