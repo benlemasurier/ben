@@ -1,10 +1,12 @@
+set nocompatible
+
 syntax on
 "colorscheme elflord
 "colorscheme desert
 colorscheme wombat
 
 " line numbers
-set nu
+set number
 
 " show the nasties
 set list
@@ -65,6 +67,11 @@ hi clear note
 hi clear fixme
 hi clear xxx
 
+" scrolling
+set scrolloff=8 "Start scrolling 8 lines from margin
+set sidescrolloff=15
+set sidescroll=1
+
 " make Y copy to the end of the line
 map Y y$"
 
@@ -82,10 +89,17 @@ autocmd BufRead,BufNewFile *.less set filetype=css
 hi link htmlLink NONE
 
 " remove trailing spaces on save
-autocmd BufWritePre * kz|:%s/\s\+$//e|'z
+"autocmd BufWritePre * kz|:%s/\s\+$//e|'z
 
 " tabs are ok for golang
 autocmd BufRead,BufNewFile *.go set nolist
+
+" Keep undo history across sessions, by storing in file.
+if has('persistent_undo')
+  silent !mkdir ~/.vim/backups > /dev/null 2>&1
+  set undodir=~/.vim/backups
+  set undofile
+endif
 
 " encrypted editing
 augroup CPT
