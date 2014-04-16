@@ -6,6 +6,7 @@ export EDITOR=vim
 alias cd..="cd .."
 alias gvim="mvim"
 alias random_password='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c8 && echo'
+alias kl="kitchen list"
 
 # run the previous command with sudo
 alias please="sudo !!"
