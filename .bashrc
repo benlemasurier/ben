@@ -7,6 +7,7 @@ alias cd..="cd .."
 alias gvim="mvim"
 alias random_password='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c8 && echo'
 alias kl="kitchen list"
+alias kli="kitchen login"
 alias kc="kitchen converge"
 
 # run the previous command with sudo
