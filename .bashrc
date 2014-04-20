@@ -21,6 +21,8 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export DOCKER_HOST=tcp://localhost:4243
 export GOPATH=$HOME/code/go
+export GOHOME=$GOPATH/src/github.com/benlemasurier
+export PATH=$PATH:$GOPATH/bin
 
 # history
 HISTCONTROL=ignoredups:ignorespace

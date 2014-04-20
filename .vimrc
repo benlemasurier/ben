@@ -1,6 +1,8 @@
 set nocompatible
 
 syntax on
+" prevent really long lines from slowing me down.
+set synmaxcol=120
 "colorscheme elflord
 "colorscheme desert
 colorscheme wombat
