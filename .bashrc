@@ -22,6 +22,7 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export DOCKER_HOST=tcp://localhost:4243
 export GOPATH=$HOME/code/go
 export GOHOME=$GOPATH/src/github.com/benlemasurier
+export CODEHOME=$HOME/code/
 export PATH=$PATH:$GOPATH/bin
 
 # history
@@ -121,3 +122,4 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+source ~/.git-completion
