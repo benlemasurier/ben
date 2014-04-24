@@ -9,6 +9,7 @@ alias random_password='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c8 && echo'
 alias kl="kitchen list"
 alias kli="kitchen login"
 alias kc="kitchen converge"
+alias kd="kitchen destroy"
 
 # run the previous command with sudo
 alias please="sudo !!"
