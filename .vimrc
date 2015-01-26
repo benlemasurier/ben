@@ -157,6 +157,9 @@ filetype plugin indent on
 
 " golang
 "
+" automatically insert import paths
+let g:go_fmt_command = "goimports"
+
 " show a list of interfaces implemented by type under cursor
 au FileType go nmap <Leader>s <Plug>(go-implements)
 
@@ -170,3 +173,5 @@ au FileType go nmap <Leader>gb <Plug>(go-doc-vertical)
 au FileType go nmap <leader>b <Plug>(go-build)
 " go-test
 au FileType go nmap <leader>t <Plug>(go-test)
+" go-coverage
+au FileType go nmap <leader>c <Plug>(go-coverage)
