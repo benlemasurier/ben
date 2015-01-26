@@ -29,6 +29,9 @@ call vundle#end()
 
 syntax on
 
+" leader key = ,
+let mapleader=","
+
 " prevent really long lines from slowing me down.
 set synmaxcol=120
 
@@ -151,3 +154,19 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 filetype plugin indent on
+
+" golang
+"
+" show a list of interfaces implemented by type under cursor
+au FileType go nmap <Leader>s <Plug>(go-implements)
+
+" show godoc (vertically) for word under cursor
+au FileType go nmap <Leader>gd <Plug>(go-doc-vertical)
+
+" show godoc in the browser for word under cursor
+au FileType go nmap <Leader>gb <Plug>(go-doc-vertical)
+
+" go-build
+au FileType go nmap <leader>b <Plug>(go-build)
+" go-test
+au FileType go nmap <leader>t <Plug>(go-test)
