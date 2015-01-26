@@ -169,6 +169,9 @@ au FileType go nmap <Leader>gd <Plug>(go-doc-vertical)
 " show godoc in the browser for word under cursor
 au FileType go nmap <Leader>gb <Plug>(go-doc-vertical)
 
+" open target identifier in new vsplit
+au FileType go nmap <Leader>gv <Plug>(go-def-vertical)
+
 " go-build
 au FileType go nmap <leader>b <Plug>(go-build)
 " go-test
