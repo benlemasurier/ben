@@ -24,6 +24,7 @@ Bundle 'edsono/vim-matchit'
 
 " tagbar
 Bundle 'majutsushi/tagbar'
+
 nmap <F8> :TagbarToggle<CR>
 call vundle#end()
 
@@ -128,6 +129,7 @@ set guioptions=aegimrLt
 " font
 if has("gui_macvim")
   set guifont=Monaco:h12
+  set noantialias
 endif
 
 " don't highlight html links
