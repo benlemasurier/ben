@@ -1,1 +1,3 @@
 .vim/.netrwlist
+.vim/bundle
+.vim/backups

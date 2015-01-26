@@ -1,14 +1,50 @@
-set nocompatible
+" requires vundle to manage plugins: http://github.com/gmarik/vundle
+
+set nocompatible    " vim required
+filetype off        " required by vundle
+
+" vundle setup and initialization
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'fatih/vim-go'
+Plugin 'vim-ruby/vim-ruby'
+
+" align text vertically on a string:
+Bundle 'Align'
+
+" colorschemes
+Bundle 'altercation/vim-colors-solarized'
+Plugin 'flazz/vim-colorschemes'
+Bundle 'chriskempson/vim-tomorrow-theme.git'
+Bundle 'ColorSchemeMenuMaker'
+
+" improve matching
+Bundle 'edsono/vim-matchit'
+
+" tagbar
+Bundle 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
+call vundle#end()
 
 syntax on
+
 " prevent really long lines from slowing me down.
 set synmaxcol=120
-"colorscheme elflord
-"colorscheme desert
-colorscheme wombat
+
+" colorscheme wombat
+" colorscheme Tomorrow-Night
+colorscheme Hybrid
+if has("gui_macvim")
+  set background=dark
+endif
 
 " line numbers
 set number
+set ruler
+
+" column/line indicator
+set ruler
 
 " show the nasties
 set list
@@ -29,6 +65,10 @@ set expandtab
 set smarttab
 set backspace=indent,eol,start
 set nowrap
+
+" don't deselect indentation
+:vnoremap < <gv
+:vnoremap > >gv
 
 " show matching bracets
 set showmatch
@@ -81,11 +121,11 @@ set title
 
 " gui
 set guioptions=aegimrLt
-set gfn=Monospace\ 8
-"set gfn=ProggyCleanTT\ 12
 
-" LESS = .css
-autocmd BufRead,BufNewFile *.less set filetype=css
+" font
+if has("gui_macvim")
+  set guifont=Monaco:h12
+endif
 
 " don't highlight html links
 hi link htmlLink NONE
@@ -96,6 +136,9 @@ hi link htmlLink NONE
 " tabs are ok for golang
 autocmd BufRead,BufNewFile *.go set nolist
 
+" no swap files
+set noswapfile
+
 " Keep undo history across sessions, by storing in file.
 if has('persistent_undo')
   silent !mkdir ~/.vim/backups > /dev/null 2>&1
@@ -103,42 +146,8 @@ if has('persistent_undo')
   set undofile
 endif
 
-" encrypted editing
-augroup CPT
-  au!
-  au BufReadPre *.cpt set bin
-  au BufReadPre *.cpt set viminfo=
-  au BufReadPre *.cpt set noswapfile
-  au BufReadPost *.cpt let $vimpass = inputsecret("Password: ")
-  au BufReadPost *.cpt silent '[,']!ccrypt -cb -E vimpass
-  au BufReadPost *.cpt set nobin
-  au BufWritePre *.cpt set bin
-  au BufWritePre *.cpt '[,']!ccrypt -e -E vimpass
-  au BufWritePost *.cpt u
-  au BufWritePost *.cpt set nobin
-  au BufWritePost *.cpt set spell
-augroup END
-
-func! WordProcessorMode()
-  setlocal formatoptions=1
-  set formatoptions+=t
-  setlocal noexpandtab
-  map j gj
-  map k gk
-  setlocal spell spelllang=en_us
-  set complete+=s
-  set formatprg=par
-  setlocal wrap
-  setlocal linebreak
-  set textwidth=74
-  set lcs=tab: .
-endfu
-com! WP call WordProcessorMode()
-
 if $COLORTERM == 'gnome-terminal'
     set t_Co=256
 endif
 
-" pathogen
-execute pathogen#infect()
 filetype plugin indent on
