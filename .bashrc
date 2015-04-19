@@ -3,6 +3,9 @@
 
 export EDITOR=vim
 
+#export http_proxy=http://localhost:3128
+
+alias lod="echo 'ಠ_ಠ' | pbcopy"
 alias cd..="cd .."
 alias gvim="mvim"
 alias random_password='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c8 && echo'
@@ -10,6 +13,11 @@ alias kl="kitchen list"
 alias kli="kitchen login"
 alias kc="kitchen converge"
 alias kd="kitchen destroy"
+alias drm='docker stop $(docker ps -q -a) && docker rm $(docker ps -q -a)'
+alias dl='docker logs'
+
+# always forward ssh key
+alias ssh="ssh -A"
 
 # run the previous command with sudo
 alias please="sudo !!"
@@ -25,13 +33,29 @@ export GOPATH=$HOME/code/go
 export GOHOME=$GOPATH/src/github.com/benlemasurier
 export CODEHOME=$HOME/code/
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/Cellar/go/1.2.1/libexec/bin
 
-# history
-HISTCONTROL=ignoredups:ignorespace
-HISTSIZE=5000
-HISTFILESIZE=10000
-shopt -s histappend
-export PROMPT_COMMAND='history -a'
+# Make vim the default editor.
+export EDITOR='vim';
+
+# Increase Bash history size. Allow 32³ entries; the default is 500.
+export HISTSIZE='32768';
+export HISTFILESIZE="${HISTSIZE}";
+# Omit duplicates and commands that begin with a space from history.
+export HISTCONTROL='ignoreboth';
+
+# Prefer US English and use UTF-8.
+export LANG='en_US.UTF-8';
+export LC_ALL='en_US.UTF-8';
+
+# Highlight section titles in manual pages.
+export LESS_TERMCAP_md="${yellow}";
+
+# Don’t clear the screen after quitting a manual page.
+export MANPAGER='less -X';
+
+# Always enable colored `grep` output.
+export GREP_OPTIONS='--color=auto';
 
 # correctly wrap lines
 shopt -s checkwinsize
@@ -103,8 +127,6 @@ function pullall() {
 }
 
 # chef
-#export PATH="/opt/chef/embedded/bin:$PATH"
-#export OPSCODE_USER="ben___"
 function chefdeps() {
   grep depends chef-*/metadata.rb | sed -E 's/[[:space:]]+/ /' | awk '{ printf "%s%s%s %s\n", $2, $3, $4, $1 }' | sort | column -t
 }
