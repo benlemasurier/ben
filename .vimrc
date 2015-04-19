@@ -9,24 +9,27 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'fatih/vim-go'
 Plugin 'vim-ruby/vim-ruby'
-
-" align text vertically on a string:
-Bundle 'Align'
-
-" colorschemes
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'Align'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'flazz/vim-colorschemes'
-Bundle 'chriskempson/vim-tomorrow-theme.git'
-Bundle 'ColorSchemeMenuMaker'
-
-" improve matching
-Bundle 'edsono/vim-matchit'
-
-" tagbar
-Bundle 'majutsushi/tagbar'
+Plugin 'chriskempson/vim-tomorrow-theme.git'
+Plugin 'ColorSchemeMenuMaker'
+Plugin 'edsono/vim-matchit'
+Plugin 'majutsushi/tagbar'
+Plugin 'jimenezrick/vimerl'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'bling/vim-airline'
+call vundle#end()
 
 nmap <F8> :TagbarToggle<CR>
-call vundle#end()
+
+" always cd to current file
+set autochdir
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
 
 syntax on
 
@@ -36,12 +39,10 @@ let mapleader=","
 " prevent really long lines from slowing me down.
 set synmaxcol=120
 
+set background=dark
 " colorscheme wombat
 " colorscheme Tomorrow-Night
 colorscheme Hybrid
-if has("gui_macvim")
-  set background=dark
-endif
 
 " line numbers
 set number
@@ -151,9 +152,7 @@ if has('persistent_undo')
   set undofile
 endif
 
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
-endif
+set t_Co=256
 
 filetype plugin indent on
 
@@ -176,7 +175,9 @@ au FileType go nmap <Leader>gv <Plug>(go-def-vertical)
 
 " go-build
 au FileType go nmap <leader>b <Plug>(go-build)
+
 " go-test
 au FileType go nmap <leader>t <Plug>(go-test)
+
 " go-coverage
 au FileType go nmap <leader>c <Plug>(go-coverage)
