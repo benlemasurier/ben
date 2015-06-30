@@ -33,7 +33,7 @@ export GOPATH=$HOME/code/go
 export GOHOME=$GOPATH/src/github.com/benlemasurier
 export CODEHOME=$HOME/code/
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/Cellar/go/1.2.1/libexec/bin
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
 # Make vim the default editor.
 export EDITOR='vim';
