@@ -19,6 +19,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'jimenezrick/vimerl'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'bling/vim-airline'
+Plugin 'vim-perl/vim-perl'
 call vundle#end()
 
 nmap <F8> :TagbarToggle<CR>
@@ -37,7 +38,7 @@ syntax on
 let mapleader=","
 
 " prevent really long lines from slowing me down.
-set synmaxcol=120
+set synmaxcol=400
 
 set background=dark
 " colorscheme wombat
@@ -57,6 +58,10 @@ set lcs=tab:>.      " tabs
 set lcs+=trail:·    " trailing spaces
 set lcs+=extends:#  " line wrap
 set lcs+=nbsp:.     " non-breaking spaces
+
+set t_Co=256
+
+filetype plugin indent on
 
 " indentation
 filetype plugin on
@@ -139,8 +144,11 @@ hi link htmlLink NONE
 " remove trailing spaces on save
 "autocmd BufWritePre * kz|:%s/\s\+$//e|'z
 
-" tabs are ok for golang
+" tabs are sometimes ok
 autocmd BufRead,BufNewFile *.go set nolist
+autocmd Filetype perl set noexpandtab copyindent preserveindent softtabstop=0 shiftwidth=8 tabstop=8
+autocmd BufRead,BufNewFile *.p[lm] set nolist
+let perl_include_pod = 1
 
 " no swap files
 set noswapfile
@@ -152,12 +160,11 @@ if has('persistent_undo')
   set undofile
 endif
 
-set t_Co=256
-
-filetype plugin indent on
-
 " golang
-"
+
+" golint
+set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
+
 " automatically insert import paths
 let g:go_fmt_command = "goimports"
 
