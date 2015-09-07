@@ -2,10 +2,8 @@
 export ZSH=/Users/ben/.oh-my-zsh
 
 # Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+# see: ~/.oh-my-zsh/themes/
+ZSH_THEME="gitster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,7 +51,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/go/libexec/bin"
+export PATH=$PATH:"/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/go/libexec/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -86,14 +84,26 @@ source $ZSH/oh-my-zsh.sh
 export GOPATH=$HOME/code/go
 export GODO=$GOPATH/src/github.internal.digitalocean.com/digitalocean
 export GOME=$GOPATH/src/github.com/benlemasurier
-export GOHOME=$GOPATH/src/github.internal.digitalocean.com
-
-# chef
-export CHEF_USER=benlemasurier
-eval "$(chef shell-init $(basename $SHELL))"
-export KITCHEN_LOCAL_YAML="$HOME/.kitchen/config.yml"
+export GOHOME=$GOPATH/src/github.com/benlemasurier
+export PATH=$PATH:$GOPATH/bin
 
 alias kl="kitchen list"
 alias kc="kitchen converge"
 alias kli="kitchen login"
 alias kd="kitchen destroy"
+alias kv="kitchen verify"
+
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/Cellar
+
+source ~/.zsh_secrets
+source ~/.profile
+
+# chef
+export CHEF_USER=benlemasurier
+eval "$(chef shell-init $(basename $SHELL))"
+#export KITCHEN_LOCAL_YAML="$HOME/.kitchen/config.yml"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# digitalocean specific environment data
+source ~/.zsh-digitalocean
