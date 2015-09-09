@@ -24,26 +24,25 @@ call vundle#end()
 
 nmap <F8> :TagbarToggle<CR>
 
-" always cd to current file
-set autochdir
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-
-syntax on
+" set terminal title to filename
+set title
 
 " leader key = ,
 let mapleader=","
 
-" prevent really long lines from slowing me down.
-set synmaxcol=400
+" always cd to current file
+set autochdir
 
+" syntax highlighting
+syntax on
 set background=dark
-" colorscheme wombat
-" colorscheme Tomorrow-Night
-colorscheme Hybrid
+colorscheme hybrid
+
+" no swap files
+set noswapfile
+
+" prevent really long lines from bogging down the system
+set synmaxcol=400
 
 " line numbers
 set number
@@ -52,33 +51,40 @@ set ruler
 " column/line indicator
 set ruler
 
+" scrolling
+set scrolloff=8 "Start scrolling 8 lines from margin
+set sidescrolloff=15
+set sidescroll=1
+
 " show the nasties
-set list
-set lcs=tab:>.      " tabs
-set lcs+=trail:·    " trailing spaces
-set lcs+=extends:#  " line wrap
-set lcs+=nbsp:.     " non-breaking spaces
+set nolist
+set listchars=trail:·     " trailing spaces
+set listchars+=tab:\\t    " tabs
+set listchars+=extends:#  " line wrap
+set listchars+=nbsp:.     " non-breaking spaces
 
 set t_Co=256
 
-filetype plugin indent on
-
 " indentation
+filetype on
 filetype plugin on
 filetype indent on
 set autoindent
 set smartindent
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab
 set smarttab
 set backspace=indent,eol,start
 set nowrap
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+set noexpandtab
 
 " don't deselect indentation
 :vnoremap < <gv
 :vnoremap > >gv
+
+" make Y copy to the end of the line
+map Y y$"
 
 " show matching bracets
 set showmatch
@@ -87,28 +93,20 @@ set showmatch
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 
-" open file in this directory
-map <C-o> :sp .<CR>
-
 " split window min height
 set wmh=0
 
 " always show status line
 set laststatus=2
 
-function! CurDir()
-       let curdir = substitute(getcwd(), '/Users/blemasurier/', "~/", "g")
-       return curdir
-endfunction
+" show search matches as you type them
+set incsearch
 
 " ignore case when searching
 set ignorecase
 
 " unless it starts with a capitol
 set smartcase
-
-" show search matches as you type them
-set incsearch
 
 " highlight search results
 set hlsearch
@@ -119,39 +117,11 @@ hi clear note
 hi clear fixme
 hi clear xxx
 
-" scrolling
-set scrolloff=8 "Start scrolling 8 lines from margin
-set sidescrolloff=15
-set sidescroll=1
-
-" make Y copy to the end of the line
-map Y y$"
-
-set title
-
-" gui
-set guioptions=aegimrLt
-
-" font
-if has("gui_macvim")
-  set guifont=Monaco:h12
-  set noantialias
-endif
-
 " don't highlight html links
 hi link htmlLink NONE
 
 " remove trailing spaces on save
 "autocmd BufWritePre * kz|:%s/\s\+$//e|'z
-
-" tabs are sometimes ok
-autocmd BufRead,BufNewFile *.go set nolist
-autocmd Filetype perl set noexpandtab copyindent preserveindent softtabstop=0 shiftwidth=8 tabstop=8
-autocmd BufRead,BufNewFile *.p[lm] set nolist
-let perl_include_pod = 1
-
-" no swap files
-set noswapfile
 
 " Keep undo history across sessions, by storing in file.
 if has('persistent_undo')
@@ -159,6 +129,16 @@ if has('persistent_undo')
   set undodir=~/.vim/backups
   set undofile
 endif
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+
+autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+
+" ruby: no tabs, 2 spaces for indent
+autocmd FileType ruby set tabstop=2 softtabstop=2 expandtab listchars+=tab:>-
 
 " golang
 
@@ -169,22 +149,31 @@ set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 let g:go_fmt_command = "goimports"
 
 " show a list of interfaces implemented by type under cursor
-au FileType go nmap <Leader>s <Plug>(go-implements)
+autocmd FileType go nmap <Leader>s <Plug>(go-implements)
 
 " show godoc (vertically) for word under cursor
-au FileType go nmap <Leader>gd <Plug>(go-doc-vertical)
+autocmd FileType go nmap <Leader>gd <Plug>(go-doc-vertical)
 
 " show godoc in the browser for word under cursor
-au FileType go nmap <Leader>gb <Plug>(go-doc-vertical)
+autocmd FileType go nmap <Leader>gb <Plug>(go-doc-vertical)
 
 " open target identifier in new vsplit
-au FileType go nmap <Leader>gv <Plug>(go-def-vertical)
+autocmd FileType go nmap <Leader>gv <Plug>(go-def-vertical)
 
 " go-build
-au FileType go nmap <leader>b <Plug>(go-build)
+autocmd FileType go nmap <leader>b <Plug>(go-build)
 
 " go-test
-au FileType go nmap <leader>t <Plug>(go-test)
+autocmd FileType go nmap <leader>t <Plug>(go-test)
 
 " go-coverage
-au FileType go nmap <leader>c <Plug>(go-coverage)
+autocmd FileType go nmap <leader>c <Plug>(go-coverage)
+
+" gui
+set guioptions=aegimrLt
+
+" font
+if has("gui_macvim")
+  set guifont=Monaco:h12
+  set noantialias
+endif
