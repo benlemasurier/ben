@@ -3,8 +3,6 @@
 
 export EDITOR=vim
 
-#export http_proxy=http://localhost:3128
-
 alias lod="echo 'ಠ_ಠ' | pbcopy"
 alias cd..="cd .."
 alias gvim="mvim"
@@ -101,16 +99,14 @@ fi
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     $platform = `uname`
-    if [[ $platform == 'linux' ]]; then
+    if [[ $platform == 'Linux' ]]; then
       alias ls='ls --color=auto'
     elif [[ $platform == 'Darwin' ]]; then
       alias ls='ls -G'
     fi
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
     export GREP_OPTIONS="--color=always"
+    alias grep='grep --color=auto'
 fi
 
 # debian maintainer
