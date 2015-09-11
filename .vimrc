@@ -57,9 +57,9 @@ set sidescrolloff=15
 set sidescroll=1
 
 " show the nasties
-set nolist
+set list
 set listchars=trail:·     " trailing spaces
-set listchars+=tab:\\t    " tabs
+set listchars+=tab:\ \    " tabs (don't show them)
 set listchars+=extends:#  " line wrap
 set listchars+=nbsp:.     " non-breaking spaces
 
@@ -74,10 +74,10 @@ set smartindent
 set smarttab
 set backspace=indent,eol,start
 set nowrap
-set tabstop=8
-set softtabstop=4
-set shiftwidth=4
 set noexpandtab
+set tabstop=8
+set shiftwidth=8
+set softtabstop=4
 
 " don't deselect indentation
 :vnoremap < <gv
@@ -139,6 +139,9 @@ autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
 " ruby: no tabs, 2 spaces for indent
 autocmd FileType ruby set tabstop=2 softtabstop=2 expandtab listchars+=tab:>-
+
+" bash: no tabs, 2 spaces for indent
+autocmd FileType sh set tabstop=4 shiftwidth=4 expandtab listchars+=tab:>-
 
 " golang
 

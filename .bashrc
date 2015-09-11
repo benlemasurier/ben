@@ -13,6 +13,9 @@ alias kc="kitchen converge"
 alias kd="kitchen destroy"
 alias drm='docker stop $(docker ps -q -a) && docker rm $(docker ps -q -a)'
 alias dl='docker logs'
+if [ -f /etc/debian_version ]; then
+    alias ack='ack-grep'
+fi
 
 # always forward ssh key
 alias ssh="ssh -A"
@@ -32,6 +35,7 @@ export GOHOME=$GOPATH/src/github.com/benlemasurier
 export CODEHOME=$HOME/code/
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export PATH=$PATH:/sbin
 
 # Make vim the default editor.
 export EDITOR='vim';
