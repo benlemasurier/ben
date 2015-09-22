@@ -20,6 +20,7 @@ Plugin 'jimenezrick/vimerl'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'bling/vim-airline'
 Plugin 'vim-perl/vim-perl'
+Plugin 'bruno-/vim-man'
 call vundle#end()
 
 nmap <F8> :TagbarToggle<CR>
@@ -76,7 +77,6 @@ set backspace=indent,eol,start
 set nowrap
 set noexpandtab
 set tabstop=8
-set shiftwidth=8
 set softtabstop=4
 
 " don't deselect indentation
@@ -135,13 +135,13 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.space = "\ua0"
 
-autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+autocmd FileType make set noexpandtab softtabstop=0
 
 " ruby: no tabs, 2 spaces for indent
-autocmd FileType ruby set tabstop=2 softtabstop=2 expandtab listchars+=tab:>-
+autocmd FileType ruby set expandtab tabstop=2 softtabstop=2 listchars+=tab:>-
 
 " bash: no tabs, 2 spaces for indent
-autocmd FileType sh set tabstop=4 shiftwidth=4 expandtab listchars+=tab:>-
+autocmd FileType sh set expandtab tabstop=4 listchars+=tab:>-
 
 " golang
 
