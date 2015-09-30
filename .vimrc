@@ -21,6 +21,7 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'bling/vim-airline'
 Plugin 'vim-perl/vim-perl'
 Plugin 'bruno-/vim-man'
+Plugin 'ekalinin/Dockerfile.vim'
 call vundle#end()
 
 nmap <F8> :TagbarToggle<CR>
