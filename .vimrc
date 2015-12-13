@@ -144,6 +144,9 @@ autocmd FileType ruby set expandtab tabstop=2 softtabstop=2 listchars+=tab:>-
 " bash: no tabs, 2 spaces for indent
 autocmd FileType sh set expandtab tabstop=4 listchars+=tab:>-
 
+" javascript: no tabs, 2 spaces for indent
+autocmd FileType javascript set expandtab tabstop=2 softtabstop=2 listchars+=tab:>-
+
 " golang
 
 " golint
