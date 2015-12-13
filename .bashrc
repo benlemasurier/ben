@@ -13,8 +13,10 @@ alias kc="kitchen converge"
 alias kd="kitchen destroy"
 alias drm='docker stop $(docker ps -q -a) && docker rm $(docker ps -q -a)'
 alias dl='docker logs'
+alias agi='apt-get install'
 if [ -f /etc/debian_version ]; then
     alias ack='ack-grep'
+    alias node='nodejs'
 fi
 
 # always forward ssh key
@@ -23,25 +25,27 @@ alias ssh="ssh -A"
 # run the previous command with sudo
 alias please="sudo !!"
 
-# serve
+# spin up a http server
 alias serve="python -m SimpleHTTPServer"
 
 # paths
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$PATH:/sbin
+export PATH=$PATH:/usr/local/packer
 export DOCKER_HOST=tcp://localhost:4243
+export CODE=$HOME/code/
+
+# go
 export GOPATH=$HOME/code/go
 export GOHOME=$GOPATH/src/github.com/benlemasurier
-export CODEHOME=$HOME/code/
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
-export PATH=$PATH:/sbin
 
 # Make vim the default editor.
 export EDITOR='vim';
 
-# Increase Bash history size. Allow 32³ entries; the default is 500.
-export HISTSIZE='32768';
+# Increase Bash history size. Default is 500.
+export HISTSIZE='131072';
 export HISTFILESIZE="${HISTSIZE}";
 # Omit duplicates and commands that begin with a space from history.
 export HISTCONTROL='ignoreboth';
@@ -120,6 +124,8 @@ export DEBEMAIL DEBFULLNAME
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
+alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
+complete -F _quilt_completion $_quilt_complete_opt dquilt
 
 # update all git repositories under the current directory
 function pullall() {
@@ -131,18 +137,22 @@ function chefdeps() {
   grep depends chef-*/metadata.rb | sed -E 's/[[:space:]]+/ /' | awk '{ printf "%s%s%s %s\n", $2, $3, $4, $1 }' | sort | column -t
 }
 
-# RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
 
 # bash completion
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 source ~/.git-completion
+
+export DOCKER_HOST="unix:///var/run/docker.sock"
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# work environment
+if [ -f $HOME/.doenv ]; then
+        source $HOME/.doenv
+fi
