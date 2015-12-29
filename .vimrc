@@ -22,6 +22,9 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-perl/vim-perl'
 Plugin 'bruno-/vim-man'
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'nono/vim-handlebars'
+Plugin 'rust-lang/rust.vim'
 call vundle#end()
 
 nmap <F8> :TagbarToggle<CR>
@@ -33,7 +36,7 @@ set title
 let mapleader=","
 
 " always cd to current file
-set autochdir
+"set autochdir
 
 " syntax highlighting
 syntax on
@@ -136,16 +139,29 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.space = "\ua0"
 
-autocmd FileType make set noexpandtab softtabstop=0
+autocmd Filetype make set noexpandtab softtabstop=0
+autocmd Filetype perl set noexpandtab softtabstop=0
 
 " ruby: no tabs, 2 spaces for indent
-autocmd FileType ruby set expandtab tabstop=2 softtabstop=2 listchars+=tab:>-
-
-" bash: no tabs, 2 spaces for indent
-autocmd FileType sh set expandtab tabstop=4 listchars+=tab:>-
+autocmd Filetype ruby set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
 
 " javascript: no tabs, 2 spaces for indent
-autocmd FileType javascript set expandtab tabstop=2 softtabstop=2 listchars+=tab:>-
+autocmd Filetype javascript set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
+
+" html: no tabs, 2 spaces for indent
+autocmd Filetype html set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
+
+" handlebars : no tabs, 2 spaces for indent
+autocmd Filetype handlebars.html set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
+
+" bash: no tabs, 4 spaces for indent
+autocmd Filetype sh set expandtab tabstop=4 softtabstop=4 shiftwidth=4 listchars+=tab:>-
+
+" rust: no tabs, 4 spaces for indent
+autocmd Filetype sh set expandtab tabstop=4 softtabstop=4 shiftwidth=4 listchars+=tab:>-
+
+" sql: no tabs, 4 spaces for indent
+autocmd Filetype sql set expandtab tabstop=4 softtabstop=4 shiftwidth=4 listchars+=tab:>-
 
 " golang
 
@@ -156,25 +172,25 @@ set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 let g:go_fmt_command = "goimports"
 
 " show a list of interfaces implemented by type under cursor
-autocmd FileType go nmap <Leader>s <Plug>(go-implements)
+autocmd Filetype go nmap <Leader>s <Plug>(go-implements)
 
 " show godoc (vertically) for word under cursor
-autocmd FileType go nmap <Leader>gd <Plug>(go-doc-vertical)
+autocmd Filetype go nmap <Leader>gd <Plug>(go-doc-vertical)
 
 " show godoc in the browser for word under cursor
-autocmd FileType go nmap <Leader>gb <Plug>(go-doc-vertical)
+autocmd Filetype go nmap <Leader>gb <Plug>(go-doc-vertical)
 
 " open target identifier in new vsplit
-autocmd FileType go nmap <Leader>gv <Plug>(go-def-vertical)
+autocmd Filetype go nmap <Leader>gv <Plug>(go-def-vertical)
 
 " go-build
-autocmd FileType go nmap <leader>b <Plug>(go-build)
+autocmd Filetype go nmap <leader>b <Plug>(go-build)
 
 " go-test
-autocmd FileType go nmap <leader>t <Plug>(go-test)
+autocmd Filetype go nmap <leader>t <Plug>(go-test)
 
 " go-coverage
-autocmd FileType go nmap <leader>c <Plug>(go-coverage)
+autocmd Filetype go nmap <leader>c <Plug>(go-coverage)
 
 " gui
 set guioptions=aegimrLt
