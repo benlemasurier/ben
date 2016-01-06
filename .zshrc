@@ -82,7 +82,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export GOPATH=$HOME/code/go
-export GODO=$GOPATH/src/github.internal.digitalocean.com/digitalocean
 export GOME=$GOPATH/src/github.com/benlemasurier
 export GOHOME=$GOPATH/src/github.com/benlemasurier
 export PATH=$PATH:$GOPATH/bin
