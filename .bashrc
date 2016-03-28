@@ -1,11 +1,13 @@
 # is this shell interactive?
 [ -z "$PS1" ] && return
 
+# let's try this neovim out
+alias vim=nvim
+
 export EDITOR=vim
 
 alias lod="echo 'ಠ_ಠ' | pbcopy"
 alias cd..="cd .."
-alias gvim="mvim"
 alias random_password='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c8 && echo'
 alias kl="kitchen list"
 alias kli="kitchen login"
@@ -61,7 +63,7 @@ export LESS_TERMCAP_md="${yellow}";
 export MANPAGER='less -X';
 
 # Always enable colored `grep` output.
-export GREP_OPTIONS='--color=auto';
+alias grep='grep --color=auto';
 
 # correctly wrap lines
 shopt -s checkwinsize
@@ -71,7 +73,7 @@ case "$TERM" in
 xterm*|rxvt*|linux|screen|SCREEN)
     export CLICOLOR=1
 
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    PS1="[\u@\h \W]\$ "
     ;;
 *)
     ;;
@@ -91,11 +93,6 @@ if [ -n "$force_color_prompt" ]; then
   fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
 unset color_prompt force_color_prompt
 
 # try really hard to get 256 color support
@@ -113,7 +110,6 @@ if [ -x /usr/bin/dircolors ]; then
       alias ls='ls -G'
     fi
 
-    export GREP_OPTIONS="--color=always"
     alias grep='grep --color=auto'
 fi
 
@@ -155,4 +151,9 @@ eval "$(rbenv init -)"
 # work environment
 if [ -f $HOME/.doenv ]; then
         source $HOME/.doenv
+fi
+
+# secrets
+if [ -f $HOME/.bash_secrets ]; then
+        source $HOME/.bash_secrets
 fi
