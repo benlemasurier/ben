@@ -127,6 +127,9 @@ hi link htmlLink NONE
 " remove trailing spaces on save
 "autocmd BufWritePre * kz|:%s/\s\+$//e|'z
 
+" (neovim) <Esc> to normal mode from the terminal
+:tnoremap <Esc> <C-\><C-n>
+
 " Keep undo history across sessions, by storing in file.
 if has('persistent_undo')
   silent !mkdir ~/.vim/backups > /dev/null 2>&1
@@ -162,6 +165,10 @@ autocmd Filetype sh set expandtab tabstop=4 softtabstop=4 shiftwidth=4 listchars
 
 " sql: no tabs, 4 spaces for indent
 autocmd Filetype sql set expandtab tabstop=4 softtabstop=4 shiftwidth=4 listchars+=tab:>-
+
+" erlang
+autocmd BufRead,BufNewFile *.erl,*.es.*.hrl,*.yaws,*.xrl set expandtab
+au BufNewFile,BufRead *.erl,*.es,*.hrl,*.yaws,*.xrl setf erlang
 
 " golang
 
