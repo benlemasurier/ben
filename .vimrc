@@ -148,6 +148,9 @@ autocmd Filetype perl set noexpandtab softtabstop=0
 " ruby: no tabs, 2 spaces for indent
 autocmd Filetype ruby set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
 
+" yaml: no tabs, 2 spaces for indent
+autocmd Filetype yaml set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
+
 " javascript: no tabs, 2 spaces for indent
 autocmd Filetype javascript set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
 
