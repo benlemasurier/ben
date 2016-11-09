@@ -6,6 +6,7 @@ alias vim=nvim
 
 export EDITOR=vim
 
+alias docs="cd ~/Documents"
 alias lod="echo 'ಠ_ಠ' | pbcopy"
 alias cd..="cd .."
 alias random_password='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c8 && echo'
@@ -13,6 +14,7 @@ alias kl="kitchen list"
 alias kli="kitchen login"
 alias kc="kitchen converge"
 alias kd="kitchen destroy"
+alias kv="kitchen verify"
 alias drm='docker stop $(docker ps -q -a) && docker rm $(docker ps -q -a)'
 alias dl='docker logs'
 alias agi='apt-get install'
@@ -21,6 +23,11 @@ if [ -f /etc/debian_version ]; then
     alias node='nodejs'
 fi
 
+# copy to clipboard
+alias pbcopy='xsel --clipboard --input'
+
+alias gbrm="git branch | grep -v master | xargs git branch -D"
+
 # always forward ssh key
 alias ssh="ssh -A"
 
@@ -28,7 +35,7 @@ alias ssh="ssh -A"
 alias please="sudo !!"
 
 # spin up a http server
-alias serve="python -m SimpleHTTPServer"
+alias serve="python2 -m SimpleHTTPServer"
 
 # paths
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
@@ -36,6 +43,7 @@ export PATH=$PATH:/sbin
 export PATH=$PATH:/usr/local/packer
 export DOCKER_HOST=tcp://localhost:4243
 export CODE=$HOME/code/
+export PATH=$PATH:/usr/local/protoc/bin
 
 # go
 export GOPATH=$HOME/code/go
@@ -103,10 +111,10 @@ fi
 # common color support
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    $platform = `uname`
-    if [[ $platform == 'Linux' ]]; then
+    platform=`uname`
+    if [ "$platform" == "Linux" ]; then
       alias ls='ls --color=auto'
-    elif [[ $platform == 'Darwin' ]]; then
+    elif [ "$platform" == "Darwin" ]; then
       alias ls='ls -G'
     fi
 

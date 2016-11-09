@@ -25,6 +25,8 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'nono/vim-handlebars'
 Plugin 'rust-lang/rust.vim'
+Plugin 'vivien/vim-linux-coding-style'
+Plugin 'uarun/vim-protobuf'
 call vundle#end()
 
 nmap <F8> :TagbarToggle<CR>
@@ -180,6 +182,7 @@ set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 
 " automatically insert import paths
 let g:go_fmt_command = "goimports"
+"let g:go_fmt_command = "/home/ben/code/do/cthulhu/docode/bin/goimports"
 
 " show a list of interfaces implemented by type under cursor
 autocmd Filetype go nmap <Leader>s <Plug>(go-implements)
@@ -201,6 +204,9 @@ autocmd Filetype go nmap <leader>t <Plug>(go-test)
 
 " go-coverage
 autocmd Filetype go nmap <leader>c <Plug>(go-coverage)
+
+" kernel development
+let g:linuxsty_patterns = [ "/usr/src/", "/linux", "/home/ben/code/linux" ]
 
 " gui
 set guioptions=aegimrLt
