@@ -1,3 +1,7 @@
+# move between words with Ctrl+{left,right}, xterm style
+"\eOd": backward-word
+"\eOc": forward-word
+
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on
 
