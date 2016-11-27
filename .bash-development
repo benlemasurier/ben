@@ -1,0 +1,35 @@
+# development specific configuration
+
+# git
+# update all git repositories under the current directory
+function pullall() {
+  for i in `ls`; do pushd .; cd $i; git pull; popd; done;
+}
+
+# go
+export GOPATH=$HOME/code/go
+export GOHOME=$GOPATH/src/github.com/benlemasurier
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# debian packaging
+DEBEMAIL="ben.lemasurier@gmail.com"
+DEBFULLNAME="Ben LeMasurier"
+export DEBEMAIL DEBFULLNAME
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
+complete -F _quilt_completion $_quilt_complete_opt dquilt
+
+# chef
+function chefdeps() {
+  grep depends chef-*/metadata.rb | sed -E 's/[[:space:]]+/ /' | awk '{ printf "%s%s%s %s\n", $2, $3, $4, $1 }' | sort | column -t
+}
+
+# docker
+export DOCKER_HOST="unix:///var/run/docker.sock"

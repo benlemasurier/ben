@@ -1,0 +1,37 @@
+# bash aliases
+
+alias cd..="cd .."
+alias random_password='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c16 && echo'
+
+# let's try this neovim out
+#alias vim=nvim
+export EDITOR=vim
+
+# Always enable colored `grep` output.
+alias grep='grep --color=auto';
+
+# copy to clipboard
+alias pbcopy='xsel --clipboard --input'
+
+# always forward ssh key
+alias ssh="ssh -A"
+
+# spin up a http server
+alias serve="python2 -m SimpleHTTPServer"
+
+# cleanup stale git branches
+alias gbrm="git branch | grep -v master | xargs git branch -D"
+
+# test-kitchen
+alias kl="kitchen list"
+alias kli="kitchen login"
+alias kc="kitchen converge"
+alias kd="kitchen destroy"
+alias kv="kitchen verify"
+
+# docker
+alias drm='docker stop $(docker ps -q -a) && docker rm $(docker ps -q -a)'
+if [ -f /etc/debian_version ]; then
+    alias ack='ack-grep'
+    alias node='nodejs'
+fi
