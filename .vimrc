@@ -27,6 +27,7 @@ Plugin 'nono/vim-handlebars'
 Plugin 'rust-lang/rust.vim'
 Plugin 'vivien/vim-linux-coding-style'
 Plugin 'uarun/vim-protobuf'
+Plugin 'vimwiki/vimwiki'
 call vundle#end()
 
 nmap <F8> :TagbarToggle<CR>
