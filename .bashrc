@@ -25,7 +25,6 @@ export PATH=$PATH:/usr/local/protoc/bin
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$PATH:/sbin
 export PATH=$PATH:/usr/local/packer
-export DOCKER_HOST=tcp://localhost:4243
 
 # completion
 source ~/.bash-completion
