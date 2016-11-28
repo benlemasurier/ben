@@ -176,6 +176,9 @@ autocmd Filetype sql set expandtab tabstop=4 softtabstop=4 shiftwidth=4 listchar
 autocmd BufRead,BufNewFile *.erl,*.es.*.hrl,*.yaws,*.xrl set expandtab
 au BufNewFile,BufRead *.erl,*.es,*.hrl,*.yaws,*.xrl setf erlang
 
+" vimwiki
+autocmd Filetype vimwiki set expandtab tabstop=4 softtabstop=4 shiftwidth=4 listchars+=tab:>- textwidth=80 wrap linebreak nolist
+
 " golang
 
 " golint
