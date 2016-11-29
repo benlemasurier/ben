@@ -30,6 +30,8 @@ alias kv="kitchen verify"
 
 # docker
 alias drm='docker stop $(docker ps -q -a) && docker rm $(docker ps -q -a)'
+
+# canonical names
 if [ -f /etc/debian_version ]; then
     alias ack='ack-grep'
     alias node='nodejs'
