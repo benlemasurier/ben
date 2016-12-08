@@ -1,0 +1,103 @@
+! cursor
+Xcursor.size:	16
+Xcursor.theme: Vanilla-DMZ-AA
+
+! fonts
+Xft.antialias: 1
+Xft.autohint: 0
+Xft.dpi: 96
+!Xft.dpi: 192
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
+
+!
+! rxvt
+!
+
+#define termfont xft:Dina:style=Regular:size=20
+!#define termfont xft:ProggyCleanTTSZ:style=Regular:size=20
+!#define termfont xft:ProggySquareTTSZ:style=Regular:size=24
+!URxvt.letterSpace: -5
+
+!#define termfont -*-termsyn-medium-*-*-*-14-*-*-*-*-*-*-*
+URxvt.letterSpace: 0
+
+!#define termfont -*-tamsyn-medium-*-*-*-17-*-*-*-*-*-*-*
+!#define termfont -*-tamsyn-medium-*-*-*-20-*-*-*-*-*-*-*
+URxvt.font: termfont
+URxvt.boldFont: termfont
+!URxvt.boldFont: xft:Dina:style=Bold:size=20
+!URxvt.boldFont: xft:ProggyCleanTTSZ:style=Bold:size=20
+!URxvt.boldFont: xft:ProggySquareTTSZ:style=Bold:size=24
+!URxvt.boldFont: -*-termsyn-bold-*-*-*-14-*-*-*-*-*-*-*
+!URxvt.boldFont: -*-tamsyn-bold-*-*-*-17-*-*-*-*-*-*-*
+!URxvt.boldFont: -*-tamsyn-bold-*-*-*-20-*-*-*-*-*-*-*
+URxvt.italicFont: termfont
+URxvt.boldItalicFont: termfont
+
+! 256 colors
+URxvt.termName:rxvt-unicode-256color
+
+! do not show scrollbar
+URxvt*scrollBar: false
+
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+! clickable urls
+URxvt.perl-ext-common: default,matcher,resize-font
+URxvt.url-launcher: /usr/bin/google-chrome-stable
+URxvt.matcher.button: 1
+URxvt.resize-font.smaller: C-Down
+URxvt.resize-font.bigger: C-Up
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+!
+! Color
+!
+
+! special
+*.foreground:   #c5c8c6
+*.background:   #1d1f21
+*.cursorColor:  #c5c8c6
+
+! black
+*.color0:       #282a2e
+*.color8:       #373b41
+
+! red
+*.color1:       #a54242
+*.color9:       #cc6666
+
+! green
+*.color2:       #8c9440
+*.color10:      #b5bd68
+
+! yellow
+*.color3:       #de935f
+*.color11:      #f0c674
+
+! blue
+*.color4:       #5f819d
+*.color12:      #81a2be
+
+! magenta
+*.color5:       #85678f
+*.color13:      #b294bb
+
+! cyan
+*.color6:       #5e8d87
+*.color14:      #8abeb7
+
+! white
+*.color7:       #707880
+*.color15:      #c5c8c6
