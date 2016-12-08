@@ -29,6 +29,11 @@ export PATH=$PATH:/usr/local/packer
 # completion
 source ~/.bash-completion
 
+# development environment
+if [ -f $HOME/.bash-development ]; then
+    source $HOME/.bash-development
+fi
+
 # work environment
 if [ -f $HOME/.doenv ]; then
         source $HOME/.doenv

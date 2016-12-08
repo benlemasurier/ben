@@ -11,6 +11,9 @@ alias grep='grep --color=auto';
 
 # copy to clipboard
 alias pbcopy='xsel --clipboard --input'
+if [ -f /usr/bin/xclip ]; then
+    alias pbcopy="xclip -sel -r clip"
+fi
 
 # always forward ssh key
 alias ssh="ssh -A"
