@@ -35,6 +35,9 @@ nmap <F8> :TagbarToggle<CR>
 " set terminal title to filename
 set title
 
+" enable mouse use
+set mouse=a
+
 " leader key = ,
 let mapleader=","
 
