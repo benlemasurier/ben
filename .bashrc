@@ -47,3 +47,5 @@ fi
 # misc
 export LESS_TERMCAP_md="${yellow}";     # highlight titles in man pages
 export MANPAGER='less -X';              # don't clear after quitting `man`
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

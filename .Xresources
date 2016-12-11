@@ -1,12 +1,11 @@
 ! cursor
-Xcursor.size:	16
+xcursor.size: 16
 Xcursor.theme: Vanilla-DMZ-AA
 
 ! fonts
 Xft.antialias: 1
 Xft.autohint: 0
-Xft.dpi: 96
-!Xft.dpi: 192
+Xft.dpi: 192
 Xft.hinting: 1
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
@@ -16,24 +15,11 @@ Xft.rgba: rgb
 ! rxvt
 !
 
-#define termfont xft:Dina:style=Regular:size=20
-!#define termfont xft:ProggyCleanTTSZ:style=Regular:size=20
-!#define termfont xft:ProggySquareTTSZ:style=Regular:size=24
-!URxvt.letterSpace: -5
-
-!#define termfont -*-termsyn-medium-*-*-*-14-*-*-*-*-*-*-*
+#define termfont -*-terminesspowerline-medium-r-*-*-24-*-*-*-*-*-*-*
 URxvt.letterSpace: 0
 
-!#define termfont -*-tamsyn-medium-*-*-*-17-*-*-*-*-*-*-*
-!#define termfont -*-tamsyn-medium-*-*-*-20-*-*-*-*-*-*-*
 URxvt.font: termfont
-URxvt.boldFont: termfont
-!URxvt.boldFont: xft:Dina:style=Bold:size=20
-!URxvt.boldFont: xft:ProggyCleanTTSZ:style=Bold:size=20
-!URxvt.boldFont: xft:ProggySquareTTSZ:style=Bold:size=24
-!URxvt.boldFont: -*-termsyn-bold-*-*-*-14-*-*-*-*-*-*-*
-!URxvt.boldFont: -*-tamsyn-bold-*-*-*-17-*-*-*-*-*-*-*
-!URxvt.boldFont: -*-tamsyn-bold-*-*-*-20-*-*-*-*-*-*-*
+URxvt.boldFont: -*-terminesspowerline-bold-r-*-*-24-*-*-*-*-*-*-*
 URxvt.italicFont: termfont
 URxvt.boldItalicFont: termfont
 
@@ -54,7 +40,7 @@ URxvt*scrollTtyKeypress: true
 
 ! clickable urls
 URxvt.perl-ext-common: default,matcher,resize-font
-URxvt.url-launcher: /usr/bin/google-chrome-stable
+URxvt.url-launcher: /usr/bin/chromium
 URxvt.matcher.button: 1
 URxvt.resize-font.smaller: C-Down
 URxvt.resize-font.bigger: C-Up

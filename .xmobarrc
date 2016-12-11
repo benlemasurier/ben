@@ -1,16 +1,26 @@
-Config { font = "-*-terminus-*-*-*-*-*-*-*-*-*-*-*-*"
+Config { font = "-*-terminus-medium-*-*-*-18-*-*-*-*-*-*-*"
         , borderColor = "black"
         , border = TopB
         , bgColor = "black"
         , fgColor = "grey"
         , position = TopW L 100
-        , commands = [  Run Network "enp0s25" ["-S","true","-L","0","-H","10000","--normal","C5C8C6","--high","#A54242", "-t", "NETWORK: <rx> | <tx>"] 10
-                        , Run Cpu ["-L","3","-H","50","--normal","#b5bd68","--high","#a54252", "-t","CPU: <total>%"] 10
-                        , Run Memory ["-t","MEMORY: <usedratio>%"] 10
-                        , Run DiskIO [("/", "DISK: <total>")] [] 10
-                        , Run Date "%a %b %_d %Y %I:%M" "date" 10
-                        ]
+        , commands = [ Run Network "wlp58s0" ["-S","true","-L","0","-H","10000","--normal","C5C8C6","--high","#A54242", "-t", "NETWORK: <rx> | <tx>"] 50
+                     , Run Cpu ["-L","3","-H","50","--normal","#b5bd68","--high","#ff0000", "-t","CPU: <total>%"] 50
+                     , Run Memory ["-t","MEMORY: <usedratio>%"] 100
+                     , Run DiskIO [("/", "DISK: <total>")] [] 100
+		     , Run Battery [
+		       "-t", "<acstatus>: <left>% [<timeleft>]",
+		       "--",
+		       --"-c", "charge_full",
+		       "-O", "AC",
+		       "-o", "BAT",
+		       "-h", "green",
+		       "-l", "red"
+		       ] 100
+		     , Run Volume "default" "Master" [] 5
+                     , Run Date "%a %b %_d %Y %I:%M" "date" 1000
+                     ]
         , sepChar = "%"
         , alignSep = "}{"
-        , template = "%cpu% | %memory% | %diskio% | %enp0s25% }{<fc=#5F819D>%date%</fc> "
+        , template = "%battery% | %cpu% | %memory% | %diskio% | %wlp58s0% }{%default:Master% | %date%"
         }

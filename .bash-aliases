@@ -4,7 +4,7 @@ alias cd..="cd .."
 alias random_password='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c16 && echo'
 
 # let's try this neovim out
-alias vim=nvim
+#alias vim=nvim
 
 # Always enable colored `grep` output.
 alias grep='grep --color=auto';
