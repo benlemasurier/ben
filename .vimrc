@@ -130,9 +130,6 @@ hi link htmlLink NONE
 " remove trailing spaces on save
 "autocmd BufWritePre * kz|:%s/\s\+$//e|'z
 
-" (neovim) <Esc> to normal mode from the terminal
-:tnoremap <Esc> <C-\><C-n>
-
 " Keep undo history across sessions, by storing in file.
 if has('persistent_undo')
   silent !mkdir ~/.vim/backups > /dev/null 2>&1
