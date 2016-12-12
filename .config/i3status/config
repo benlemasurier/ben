@@ -41,7 +41,7 @@ run_watch VPN {
 }
 
 tztime local {
-        format = "%H:%M"
+        format = "%l:%M"
 }
 
 volume master {

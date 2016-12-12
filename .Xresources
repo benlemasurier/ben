@@ -5,7 +5,11 @@ Xcursor.theme: Vanilla-DMZ-AA
 ! fonts
 Xft.antialias: 1
 Xft.autohint: 0
+#ifdef SRVR_rooster
+Xft.dpi: 161
+#else
 Xft.dpi: 192
+#endif
 Xft.hinting: 1
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
