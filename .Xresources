@@ -11,17 +11,25 @@ Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
 
-!
-! rxvt
-!
+! per-system font settings
+! SVR_* is defined by xrdb
+#ifndef FIXED_FONT
+	#ifdef SRVR_rooster
+		#define FIXED_FONT -*-terminesspowerline-medium-r-*-*-17-*-*-*-*-*-*-*
+		#define FIXED_FONT_BOLD -*-terminesspowerline-bold-r-*-*-17-*-*-*-*-*-*-*
+	#else
+		#define FIXED_FONT -*-terminesspowerline-medium-r-*-*-24-*-*-*-*-*-*-*
+		#define FIXED_FONT_BOLD -*-terminesspowerline-bold-r-*-*-24-*-*-*-*-*-*-*
+	#endif
+#endif
 
-#define termfont -*-terminesspowerline-medium-r-*-*-24-*-*-*-*-*-*-*
-URxvt.letterSpace: 0
-
-URxvt.font: termfont
-URxvt.boldFont: -*-terminesspowerline-bold-r-*-*-24-*-*-*-*-*-*-*
-URxvt.italicFont: termfont
-URxvt.boldItalicFont: termfont
+!
+! urxvt
+!
+urxvt.font: FIXED_FONT
+urxvt.boldFont: FIXED_FONT_BOLD
+URxvt.italicFont: FIXED_FONT
+URxvt.boldItalicFont: FIXED_FONT_BOLD
 
 ! 256 colors
 URxvt.termName:rxvt-unicode-256color
