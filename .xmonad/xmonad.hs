@@ -54,7 +54,7 @@ myManageHook = composeAll
 ------------------------------------------------------------------------
 -- Layouts
 myLayout = avoidStruts (
-    spacing 20 $ Tall 1 (3/100) (1/2) |||
+    spacing 5 $ Tall 1 (3/100) (1/2) |||
     ThreeColMid 1 (3/100) (1/2) |||
     Mirror (Tall 1 (3/100) (1/2)) |||
     Full |||
