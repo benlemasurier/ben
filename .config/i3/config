@@ -23,7 +23,7 @@ client.background       #ffffff
 floating_modifier $mod
 
 # lock the screen
-bindsym $mod+Ctrl+l exec xwobf --fuzzy /tmp/.i3lock.png && i3lock -i /tmp/.i3lock.png
+bindsym $mod+Ctrl+l exec xwobf /tmp/.i3lock.png && i3lock -i /tmp/.i3lock.png
 
 # start a terminal
 bindsym $mod+Return exec urxvt
