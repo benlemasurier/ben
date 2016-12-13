@@ -1,6 +1,6 @@
 [ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
 
-# configure default cursor
+# default cursor
 xsetroot -cursor_name left_ptr  
 
 # local fonts
@@ -13,10 +13,13 @@ redshift &
 # notifications
 dunst &
 
-# infinality fonts
-#/etc/profile.d/infinality-settings.sh
+# background image
+feh --bg-scale $HOME/.config/wallpaper.jpg
 
-# standalone composite manager
+# bar
+polybar default &
+
+# composite manager
 compton -b
 
 # start window manager
