@@ -30,8 +30,8 @@ Xft.rgba: rgb
 !
 ! urxvt
 !
-urxvt.font: FIXED_FONT
-urxvt.boldFont: FIXED_FONT_BOLD
+URxvt.font: FIXED_FONT
+URxvt.boldFont: FIXED_FONT_BOLD
 URxvt.italicFont: FIXED_FONT
 URxvt.boldItalicFont: FIXED_FONT_BOLD
 
