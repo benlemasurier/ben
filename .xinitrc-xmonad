@@ -1,0 +1,23 @@
+[ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
+
+# configure default cursor
+xsetroot -cursor_name left_ptr  
+
+# local fonts
+xset +fp /home/ben/.fonts
+xset fp rehash
+
+# color temperature
+redshift &
+
+# notifications
+dunst &
+
+# infinality fonts
+#/etc/profile.d/infinality-settings.sh
+
+# standalone composite manager
+compton -b
+
+# start window manager
+exec xmonad
