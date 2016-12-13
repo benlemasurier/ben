@@ -23,7 +23,7 @@ myTerminal = "urxvt"
 myScreensaver = "xscreensaver-command -lock"
 myScreenshot = "gnome-screenshot"
 mySelectScreenshot = "gnome-screenshot -a"
-myLauncher = "$(rofi -show run -font 'proggycleantt 21' -fg '#505050' -bg '#000000' -hlfg '#81a2be' -hlbg '#000000' -o 85)"
+myLauncher = "rofi -show run"
 
 manageScratchPad :: ManageHook
 manageScratchPad = scratchpadManageHook (W.RationalRect (0.6) (0.02) (0.38) (0.88))
@@ -48,7 +48,6 @@ myWorkspaces = ["1","2","3","4","5","6","7","8"]
 myManageHook = composeAll
     [ resource  =? "desktop_window" --> doIgnore
     , className =? "Gimp"           --> doFloat
-    , className =? "stalonetray"    --> doIgnore
     , isFullscreen --> (doF W.focusDown <+> doFullFloat)]
 
 
@@ -62,10 +61,10 @@ myLayout = avoidStruts (
     Grid |||
     spiral (6/7))
 
-------------------------------------------------------------------------
--- Colors and borders
-myNormalBorderColor  = "#1A5483"
-myFocusedBorderColor = "#81a2be"
+---- color scheme:
+---- http://paletton.com/#uid=13C0u0kbKcK81kZadhuhVc9mHb0
+myNormalBorderColor  = "#2c3642"
+myFocusedBorderColor = "#54606d"
 
 -- Color of current window title in xmobar.
 xmobarTitleColor = "#FFB6B0"
