@@ -145,20 +145,20 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # i3bar to display a workspace and i3status data
-bar {
-        status_command i3status
-	font pango:Terminess Powerline $font_size
-	separator_symbol " | "
-
-	colors {
-		background  "#111111"
-		separator   "#555555"
-
-		# class			border		backgr.		text
-		active_workspace	$base_border	$base		"#ffffff"
-		focused_workspace	$focused_border	$focused	"#ffffff"
-	}
-}
+#bar {
+#        status_command i3status
+#	font pango:Terminess Powerline $font_size
+#	separator_symbol " | "
+#
+#	colors {
+#		background  "#111111"
+#		separator   "#555555"
+#
+#		# class			border		backgr.		text
+#		active_workspace	$base_border	$base		"#ffffff"
+#		focused_workspace	$focused_border	$focused	"#ffffff"
+#	}
+#}
 
 # Audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 1+ unmute
@@ -171,3 +171,6 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 
 # Wallpaper
 exec_always --no-startup-id feh --bg-scale $HOME/.config/wallpaper.jpg
+
+# polybar
+exec --no-startup-id polybar default
