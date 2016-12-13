@@ -43,7 +43,7 @@ font-3 = FontAwesome:size=8:fontformat=truetype
 
 modules-left = bspwm i3 xwindow
 modules-center = 
-modules-right = volume memory cpu wlan eth battery temperature date
+modules-right = volume memory cpu wlan eth battery date
 
 tray-position = right
 tray-padding = 2
@@ -183,7 +183,7 @@ date-alt = " %Y-%m-%d"
 time = %l:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
@@ -249,24 +249,3 @@ animation-charging-3 = 
 animation-charging-4 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
-
-format = <ramp> <label>
-format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
-
-label = %temperature%
-label-warn = %temperature%
-label-warn-foreground = ${colors.secondary}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-3 = 
-ramp-4 = 
-ramp-foreground = ${colors.foreground-alt}
