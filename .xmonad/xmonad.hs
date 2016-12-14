@@ -3,6 +3,7 @@ import System.Exit
 import XMonad
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing
@@ -16,14 +17,11 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 myTerminal = "urxvt"
-myScreensaver = "xscreensaver-command -lock"
+myLockScreen = "xwobf /tmp/.lock.png && i3lock -i /tmp/.lock.png"
 myLauncher = "rofi -show run"
 
 manageScratchPad :: ManageHook
 manageScratchPad = scratchpadManageHookDefault
-
--- Workspaces
-myWorkspaces = ["1","2","3","4","5","6","7","8"]
 
 ------------------------------------------------------------------------
 -- Window rules
@@ -57,9 +55,7 @@ myNormalBorderColor  = "#2c3642"
 myFocusedBorderColor = "#ffffff"
 myBorderWidth = 1
 
-------------------------------------------------------------------------
 -- Key bindings
-myModMask = mod1Mask
 
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- Start a terminal.  Terminal to start is specified by myTerminal variable.
@@ -71,8 +67,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       scratchpadSpawnActionTerminal $ XMonad.terminal conf)
 
   -- lock the screen
-  , ((modMask .|. controlMask, xK_l),
-     spawn myScreensaver)
+  , ((modMask .|. shiftMask , xK_l),
+     spawn myLockScreen)
 
   -- spawn the launcher
   , ((modMask, xK_p),
@@ -177,26 +173,6 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
 
 ------------------------------------------------------------------------
--- Mouse bindings
-
-myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
-  [
-    -- mod-button1, Set the window to floating mode and move by dragging
-    ((modMask, button1),
-     (\w -> focus w >> mouseMoveWindow w))
-
-    -- mod-button2, Raise the window to the top of the stack
-    , ((modMask, button2),
-       (\w -> focus w >> windows W.swapMaster))
-
-    -- mod-button3, Set the window to floating mode and resize by dragging
-    , ((modMask, button3),
-       (\w -> focus w >> mouseResizeWindow w))
-
-    -- you may also bind events to the mouse scroll wheel (button4 and button5)
-  ]
-
-------------------------------------------------------------------------
 -- Run xmonad with configuration abovedefaults we set up.
 main = do
   xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
@@ -208,16 +184,14 @@ defaults = defaultConfig {
     -- simple stuff
     terminal           = myTerminal,
     borderWidth        = myBorderWidth,
-    modMask            = myModMask,
-    workspaces         = myWorkspaces,
     normalBorderColor  = myNormalBorderColor,
     focusedBorderColor = myFocusedBorderColor,
 
     -- key bindings
     keys               = myKeys,
-    mouseBindings      = myMouseBindings,
 
     -- hooks, layouts
     layoutHook         = smartBorders $ myLayout,
-    manageHook         = manageScratchPad <+> myManageHook
+    manageHook         = manageScratchPad <+> myManageHook,
+    handleEventHook    = XMonad.Hooks.EwmhDesktops.fullscreenEventHook
 }
