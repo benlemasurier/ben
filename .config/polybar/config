@@ -43,7 +43,7 @@ font-3 = FontAwesome:size=8:fontformat=truetype
 
 modules-left = bspwm i3 xwindow
 modules-center = 
-modules-right = volume memory cpu wlan eth battery date
+modules-right = volume filesystem memory cpu wlan eth battery date
 
 tray-position = right
 tray-padding = 2
