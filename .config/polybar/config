@@ -9,7 +9,7 @@ alert = #bd2c40
 
 [global/wm]
 margin-top = 5
-margin-bottom = 5
+margin-bottom = 0
 
 [bar/default]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -130,6 +130,17 @@ format-prefix = "CPU "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
 label = %percentage%
+
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+
+format = <label> <ramp-coreload>
 
 [module/memory]
 type = internal/memory
