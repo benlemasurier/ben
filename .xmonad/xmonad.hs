@@ -1,14 +1,10 @@
 import System.IO
 import System.Exit
 import XMonad
-import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.SetWMName
-import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
-import XMonad.Layout.Spiral
 import XMonad.Layout.Spacing
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Grid
@@ -21,12 +17,10 @@ import qualified Data.Map        as M
 
 myTerminal = "urxvt"
 myScreensaver = "xscreensaver-command -lock"
-myScreenshot = "gnome-screenshot"
-mySelectScreenshot = "gnome-screenshot -a"
 myLauncher = "rofi -show run"
 
 manageScratchPad :: ManageHook
-manageScratchPad = scratchpadManageHook (W.RationalRect (0.6) (0.02) (0.38) (0.88))
+manageScratchPad = scratchpadManageHookDefault
 
 -- Workspaces
 myWorkspaces = ["1","2","3","4","5","6","7","8"]
@@ -44,7 +38,6 @@ myWorkspaces = ["1","2","3","4","5","6","7","8"]
 --
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
---
 myManageHook = composeAll
     [ resource  =? "desktop_window" --> doIgnore
     , className =? "Gimp"           --> doFloat
@@ -54,25 +47,14 @@ myManageHook = composeAll
 ------------------------------------------------------------------------
 -- Layouts
 myLayout = avoidStruts (
-    spacing 5 $ Tall 1 (3/100) (1/2) |||
-    ThreeColMid 1 (3/100) (1/2) |||
-    Mirror (Tall 1 (3/100) (1/2)) |||
-    Full |||
-    Grid |||
-    spiral (6/7))
+    spacing 5 $ 
+	    Tall 1 (3/100) (1/2) |||
+	    ThreeColMid 1 (3/100) (1/2) |||
+	    Full |||
+	    Grid)
 
----- color scheme:
----- http://paletton.com/#uid=13C0u0kbKcK81kZadhuhVc9mHb0
 myNormalBorderColor  = "#2c3642"
-myFocusedBorderColor = "#54606d"
-
--- Color of current window title in xmobar.
-xmobarTitleColor = "#FFB6B0"
-
--- Color of current workspace in xmobar.
-xmobarCurrentWorkspaceColor = "#CEFFAC"
-
--- Width of the window border in pixels.
+myFocusedBorderColor = "#ffffff"
 myBorderWidth = 1
 
 ------------------------------------------------------------------------
@@ -80,9 +62,6 @@ myBorderWidth = 1
 myModMask = mod1Mask
 
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
-  ----------------------------------------------------------------------
-  -- Custom key bindings
-
   -- Start a terminal.  Terminal to start is specified by myTerminal variable.
   [ ((modMask .|. shiftMask, xK_Return),
      spawn $ XMonad.terminal conf)
@@ -98,14 +77,6 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- spawn the launcher
   , ((modMask, xK_p),
      spawn myLauncher)
-
-  -- selective screenshot
-  , ((modMask, xK_i),
-     spawn mySelectScreenshot)
-
-  -- full screenshot
-  , ((modMask .|. controlMask .|. shiftMask, xK_p),
-     spawn myScreenshot)
 
   -- Mute volume.
   , ((0, 0x1008ff12), spawn "amixer set Master toggle")
@@ -207,10 +178,6 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 ------------------------------------------------------------------------
 -- Mouse bindings
---
--- Focus rules
-myFocusFollowsMouse :: Bool
-myFocusFollowsMouse = True
 
 myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
   [
@@ -229,47 +196,17 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
   ]
 
---------------------------------------------------------------------------------
--- Urgency Hook:
--- 
--- Use libnotify notifications when the X11 urgent hint is set
-data LibNotifyUrgencyHook = LibNotifyUrgencyHook deriving (Read, Show)
-instance UrgencyHook LibNotifyUrgencyHook where
-  urgencyHook LibNotifyUrgencyHook w = do
-    name <- getName w
-    wins <- gets windowset
-    whenJust (W.findTag w wins) (flash name)
-    where flash name index = spawn $ "notify-send " ++ "'Workspace "    ++ index     ++ "' "
-                                                    ++ "'Activity in: " ++ show name ++ "' "
-                                                    ++ "--icon=notification-gpm-monitor"
-
-
-------------------------------------------------------------------------
--- Startup hook
-myStartupHook = return ()
-
 ------------------------------------------------------------------------
 -- Run xmonad with configuration abovedefaults we set up.
 main = do
   xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
-  xmonad $ withUrgencyHook LibNotifyUrgencyHook
-      $ defaults {
-      logHook = dynamicLogWithPP $ xmobarPP {
-            ppOutput = hPutStrLn xmproc
-          , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
-          , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
-          , ppSep = "   "
-      }
-      , manageHook = manageDocks <+> myManageHook
-      , startupHook = do
-		setWMName "LG3D"
-		spawn "notify-send 'Xmonad Started/Recompiled' --icon=emblem-system"
+  xmonad $ defaults {
+        manageHook = manageDocks <+> myManageHook
   }
 
 defaults = defaultConfig {
     -- simple stuff
     terminal           = myTerminal,
-    focusFollowsMouse  = myFocusFollowsMouse,
     borderWidth        = myBorderWidth,
     modMask            = myModMask,
     workspaces         = myWorkspaces,
@@ -282,6 +219,5 @@ defaults = defaultConfig {
 
     -- hooks, layouts
     layoutHook         = smartBorders $ myLayout,
-    manageHook         = manageScratchPad <+> myManageHook,
-    startupHook        = myStartupHook
+    manageHook         = manageScratchPad <+> myManageHook
 }
