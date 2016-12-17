@@ -12,6 +12,10 @@ export GOHOME=$GOPATH/src/github.com/benlemasurier
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
+# haskell
+PATH=$PATH:~/.cabal/bin
+PATH=$PATH:.cabal-sandbox/bin
+
 # rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
