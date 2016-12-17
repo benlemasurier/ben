@@ -3,7 +3,7 @@
 # git
 # update all git repositories under the current directory
 function pullall() {
-  for i in `ls`; do pushd .; cd $i; git pull; popd; done;
+  for i in *; do pushd .; cd "$i" || exit; git pull; popd; done;
 }
 
 # go

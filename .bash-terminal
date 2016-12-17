@@ -14,31 +14,15 @@ xterm*|rxvt*|linux|screen|SCREEN)
     ;;
 esac
 
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
-esac
-
-# color
-force_color_prompt=yes
-if [ -n "$force_color_prompt" ]; then
-  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    color_prompt=yes
-  else
-    color_prompt=
-  fi
-fi
-
-unset color_prompt force_color_prompt
-
-# try really hard to get 256 color support
-if [[ \$COLORTERM = gnome-* && \$TERM = xterm ]]  && infocmp gnome-256color >/dev/null 2>&1; then export TERM=gnome-256color
-elif [[ \$TERM != dumb ]] && infocmp xterm-256color >/dev/null 2>&1; then export TERM=xterm-256color
-fi
-
 # common color support
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    platform=`uname`
+    if [ -e ~/.dircolors ]; then
+	eval "$(dircolors -b ~/.dircolors)"
+    else
+	eval "$(dircolors -b)"
+    fi
+
+    platform=$(uname)
     if [ "$platform" == "Linux" ]; then
       alias ls='ls --color=auto'
     elif [ "$platform" == "Darwin" ]; then
