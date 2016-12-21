@@ -20,8 +20,8 @@ PATH=$PATH:.cabal-sandbox/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # rbenv
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 # debian packaging
 DEBEMAIL="ben.lemasurier@gmail.com"
