@@ -148,36 +148,39 @@ let g:airline_symbols.space = "\ua0"
 autocmd Filetype make set noexpandtab softtabstop=0
 autocmd Filetype perl set noexpandtab softtabstop=0
 
+" haskell: no tabs, 4 spaces for indent
+autocmd Filetype haskell set expandtab tabstop=4 softtabstop=0 shiftwidth=4 listchars+=tab:>-
+
 " ruby: no tabs, 2 spaces for indent
-autocmd Filetype ruby set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
+autocmd Filetype ruby set expandtab tabstop=2 softtabstop=0 shiftwidth=2 listchars+=tab:>-
 
 " yaml: no tabs, 2 spaces for indent
-autocmd Filetype yaml set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
+autocmd Filetype yaml set expandtab tabstop=2 softtabstop=0 shiftwidth=2 listchars+=tab:>-
 
 " javascript: no tabs, 2 spaces for indent
-autocmd Filetype javascript set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
+autocmd Filetype javascript set expandtab tabstop=2 softtabstop=0 shiftwidth=2 listchars+=tab:>-
 
 " html: no tabs, 2 spaces for indent
-autocmd Filetype html set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
+autocmd Filetype html set expandtab tabstop=2 softtabstop=0 shiftwidth=2 listchars+=tab:>-
 
 " handlebars : no tabs, 2 spaces for indent
-autocmd Filetype handlebars.html set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
+autocmd Filetype handlebars.html set expandtab tabstop=2 softtabstop=0 shiftwidth=2 listchars+=tab:>-
 
 " bash: no tabs, 4 spaces for indent
-autocmd Filetype sh set expandtab tabstop=4 softtabstop=4 shiftwidth=4 listchars+=tab:>-
+autocmd Filetype sh set expandtab tabstop=4 softtabstop=0 shiftwidth=4 listchars+=tab:>-
 
 " rust: no tabs, 4 spaces for indent
-autocmd Filetype sh set expandtab tabstop=4 softtabstop=4 shiftwidth=4 listchars+=tab:>-
+autocmd Filetype sh set expandtab tabstop=4 softtabstop=0 shiftwidth=4 listchars+=tab:>-
 
 " sql: no tabs, 4 spaces for indent
-autocmd Filetype sql set expandtab tabstop=4 softtabstop=4 shiftwidth=4 listchars+=tab:>-
+autocmd Filetype sql set expandtab tabstop=4 softtabstop=0 shiftwidth=4 listchars+=tab:>-
 
 " erlang
 autocmd BufRead,BufNewFile *.erl,*.es.*.hrl,*.yaws,*.xrl set expandtab
 au BufNewFile,BufRead *.erl,*.es,*.hrl,*.yaws,*.xrl setf erlang
 
 " vimwiki
-autocmd Filetype vimwiki set expandtab tabstop=4 softtabstop=4 shiftwidth=4 listchars+=tab:>- textwidth=80 wrap linebreak nolist
+autocmd Filetype vimwiki set expandtab tabstop=4 softtabstop=0 shiftwidth=4 listchars+=tab:>- textwidth=80 wrap linebreak nolist
 
 " golang
 
