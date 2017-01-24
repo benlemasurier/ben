@@ -3,7 +3,7 @@
 # git
 # update all git repositories under the current directory
 function pullall() {
-  for i in `ls`; do pushd .; cd $i; git pull; popd; done;
+  for i in *; do pushd .; cd "$i" || exit; git pull; popd; done;
 }
 
 # go
@@ -11,6 +11,10 @@ export GOPATH=$HOME/code/go
 export GOHOME=$GOPATH/src/github.com/benlemasurier
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
+
+# haskell
+PATH=$PATH:~/.cabal/bin
+PATH=$PATH:.cabal-sandbox/bin
 
 # rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"

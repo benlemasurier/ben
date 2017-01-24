@@ -30,22 +30,19 @@ export PATH=$PATH:/usr/local/packer
 source ~/.bash-completion
 
 # development environment
-if [ -f $HOME/.bash-development ]; then
-    source $HOME/.bash-development
+if [ -f "$HOME/.bash-development" ]; then
+    source "$HOME/.bash-development"
 fi
 
 # work environment
-if [ -f $HOME/.doenv ]; then
-        source $HOME/.doenv
+if [ -f "$HOME/.doenv" ]; then
+        source "$HOME/.doenv"
 fi
 
 # secrets
-if [ -f $HOME/.bash_secrets ]; then
-        source $HOME/.bash_secrets
+if [ -f "$HOME/.bash_secrets" ]; then
+        source "$HOME/.bash_secrets"
 fi
 
 # misc
-export LESS_TERMCAP_md="${yellow}";     # highlight titles in man pages
-export MANPAGER='less -X';              # don't clear after quitting `man`
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export MANPAGER='less -X'; # don't clear after quitting `man`
