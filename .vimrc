@@ -28,6 +28,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'vivien/vim-linux-coding-style'
 Plugin 'uarun/vim-protobuf'
 Plugin 'vimwiki/vimwiki'
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 
 nmap <F8> :TagbarToggle<CR>
@@ -160,8 +161,14 @@ autocmd Filetype javascript set expandtab tabstop=2 softtabstop=2 shiftwidth=2 l
 " html: no tabs, 2 spaces for indent
 autocmd Filetype html set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
 
+" html: no tabs, 2 spaces for indent
+autocmd Filetype css set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
+
 " handlebars : no tabs, 2 spaces for indent
 autocmd Filetype handlebars.html set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
+
+" haskell, no tabs, 4 spaces for indent
+autocmd Filetype haskell set expandtab tabstop=4 softtabstop=4 shiftwidth=4 listchars+=tab:>-
 
 " bash: no tabs, 4 spaces for indent
 autocmd Filetype sh set expandtab tabstop=4 softtabstop=4 shiftwidth=4 listchars+=tab:>-
@@ -186,7 +193,6 @@ set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 
 " automatically insert import paths
 let g:go_fmt_command = "goimports"
-"let g:go_fmt_command = "/home/ben/code/do/cthulhu/docode/bin/goimports"
 
 " show a list of interfaces implemented by type under cursor
 autocmd Filetype go nmap <Leader>s <Plug>(go-implements)
@@ -211,12 +217,3 @@ autocmd Filetype go nmap <leader>c <Plug>(go-coverage)
 
 " kernel development
 let g:linuxsty_patterns = [ "/usr/src/", "/linux", "/home/ben/code/linux" ]
-
-" gui
-set guioptions=aegimrLt
-
-" font
-if has("gui_macvim")
-  set guifont=Monaco:h12
-  set noantialias
-endif
