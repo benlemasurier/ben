@@ -1,7 +1,7 @@
 ! ------------------------------------------------------------------------------
 ! rofi launcher
 ! ------------------------------------------------------------------------------
-rofi.font: Terminess Powerline 20
+rofi.font: xos4 Terminess Powerline 14
 rofi.width: 30
 rofi.lines: 5
 
