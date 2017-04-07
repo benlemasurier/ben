@@ -1,13 +1,26 @@
 [user]
-  name = Ben LeMasurier
-  email = ben.lemasurier@gmail.com
-[push]
-  default = simple
-[color]
-  diff = auto
-  status = auto
-  branch = auto
+	name = Ben LeMasurier
+	email = ben.lemasurier@gmail.com
+	signingkey = E8E74189
+
 [alias]
-  co = checkout
-  br = branch
-  s = status
+	co = checkout
+	br = branch
+	s = status
+
+[commit]
+	gpgSign = true
+
+[core]
+	editor = /usr/bin/vim
+
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+
+[push]
+	default = simple
+
+[status]
+	showUntrackedFiles = all
