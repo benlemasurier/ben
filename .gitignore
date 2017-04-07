@@ -1,3 +1,5 @@
+.kitchen/logs
+.mutt/cache
 .vim/.netrwlist
 .vim/bundle
 .vim/backups
