@@ -25,10 +25,10 @@ myManageHook = composeAll
 
 myLayout = avoidStruts (
     spacing 5 $ 
-	    Tall 1 (3/100) (1/2) |||
-	    ThreeColMid 1 (3/100) (1/2) |||
-	    Full |||
-	    Grid)
+        Tall 1 (3/100) (1/2) |||
+        ThreeColMid 1 (3/100) (1/2) |||
+        Full |||
+        Grid)
 
 myNormalBorderColor  = "#2c3642"
 myFocusedBorderColor = "#ffffff"
@@ -47,7 +47,7 @@ defaults = defaultConfig {
 
     layoutHook         = smartBorders $ myLayout,
     manageHook         = manageScratchPad <+> myManageHook,
-    handleEventHook    = XMonad.Hooks.EwmhDesktops.fullscreenEventHook
+    handleEventHook    = XMonad.Hooks.EwmhDesktops.fullscreenEventHook <+> docksEventHook
 } `additionalKeysP`
     [ ("M-s",   scratchpadSpawnActionTerminal $ myTerminal)
     , ("M-S-l", spawn myLockScreen)
