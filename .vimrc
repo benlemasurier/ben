@@ -14,7 +14,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'chriskempson/vim-tomorrow-theme.git'
 Plugin 'ColorSchemeMenuMaker'
-Plugin 'edsono/vim-matchit'
+Plugin 'tmhedberg/matchit'
 Plugin 'majutsushi/tagbar'
 Plugin 'jimenezrick/vimerl'
 Plugin 'elixir-lang/vim-elixir'
@@ -25,10 +25,15 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'nono/vim-handlebars'
 Plugin 'rust-lang/rust.vim'
+Plugin 'cespare/vim-toml'
 Plugin 'vivien/vim-linux-coding-style'
 Plugin 'uarun/vim-protobuf'
 Plugin 'vimwiki/vimwiki'
 Plugin 'tpope/vim-fugitive'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'SirVer/ultisnips'
+Plugin 'hashivim/vim-terraform'
 call vundle#end()
 
 nmap <F8> :TagbarToggle<CR>
@@ -44,6 +49,9 @@ let mapleader=","
 
 " always cd to current file
 "set autochdir
+
+" auto-save on build
+set autowrite
 
 " syntax highlighting
 syntax on
@@ -75,7 +83,11 @@ set listchars+=tab:\ \    " tabs (don't show them)
 set listchars+=extends:#  " line wrap
 set listchars+=nbsp:.     " non-breaking spaces
 
+" enable 256 color support
 set t_Co=256
+
+" make the quickfix readable
+hi QuickFixLine ctermbg=NONE
 
 " indentation
 filetype on
@@ -141,10 +153,7 @@ if has('persistent_undo')
   set undofile
 endif
 
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
+let g:airline_powerline_fonts = 1
 
 autocmd Filetype make set noexpandtab softtabstop=0
 autocmd Filetype perl set noexpandtab softtabstop=0
@@ -160,6 +169,7 @@ autocmd Filetype yaml set expandtab tabstop=2 softtabstop=0 shiftwidth=2 listcha
 
 " javascript: no tabs, 2 spaces for indent
 autocmd Filetype javascript set expandtab tabstop=2 softtabstop=0 shiftwidth=2 listchars+=tab:>-
+autocmd Filetype json set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
 
 " html: no tabs, 2 spaces for indent
 autocmd Filetype html set expandtab tabstop=2 softtabstop=0 shiftwidth=2 listchars+=tab:>-
@@ -190,9 +200,38 @@ au BufNewFile,BufRead *.erl,*.es,*.hrl,*.yaws,*.xrl setf erlang
 autocmd Filetype vimwiki set expandtab tabstop=4 softtabstop=0 shiftwidth=4 listchars+=tab:>- textwidth=80 wrap linebreak nolist
 
 " golang
+let g:go_highlight_chan_whitespace_error = 1
+let g:go_highlight_arary_whitespace_error = 1
+let g:go_highlight_trailing_whitespace_error = 1
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_extra_types = 0
+let g:go_highlight_functions = 0
+let g:go_highlight_methods = 0
+let g:go_highlight_types = 0
+let g:go_highlight_fields = 0
+let g:go_highlight_string_spellcheck = 0
+let g:go_highlight_format_strings = 0
+let g:go_highlight_variable_declarations = 0
+let g:go_highlight_variable_assignments = 0
+
+let g:go_auto_type_info = 1
+let updatetime=100
+
+" always use quickfix instead over location lists
+let g:go_list_type = "quickfix"
+
+" quickfix next, prev, close
+map <C-n> :cnext<CR>
+map <C-p> :cprev<CR>
+noremap <leader>a :cclose<CR>
+
 
 " golint
-set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
+" FIXME: can this go away?
+"set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 
 " automatically insert import paths
 let g:go_fmt_command = "goimports"
@@ -216,7 +255,21 @@ autocmd Filetype go nmap <leader>b <Plug>(go-build)
 autocmd Filetype go nmap <leader>t <Plug>(go-test)
 
 " go-coverage
-autocmd Filetype go nmap <leader>c <Plug>(go-coverage)
+autocmd Filetype go nmap <leader>c <Plug>(go-coverage-toggle)
 
 " kernel development
 let g:linuxsty_patterns = [ "/usr/src/", "/linux", "/home/ben/code/linux" ]
+
+" neocomplete
+"let g:neocomplete#enable_at_startup = 1
+"
+" golang autocompletion
+"if !exists('g:neocomplete#sources#omni#input_patterns')
+"  let g:neocomplete#sources#omni#input_patterns = {}
+"endif
+"let g:neocomplete#sources#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
+
+let g:deoplete#enable_at_startup = 1
+
+" ctags
+set tags=tags;$HOME

@@ -1,5 +1,8 @@
 # bash aliases
 
+# modern `ls` replacement
+alias ls="exa"
+
 alias cd..="cd .."
 alias random_password='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c16 && echo'
 
@@ -11,9 +14,9 @@ alias grep='grep --color=auto';
 
 # copy to clipboard
 alias pbcopy='xsel --clipboard --input'
-if [ -f /usr/bin/xclip ]; then
-    alias pbcopy="xclip -sel -r clip"
-fi
+#if [ -f /usr/bin/xclip ]; then
+#    alias pbcopy="xclip -sel -r clip"
+#fi
 
 # always forward ssh key
 alias ssh="ssh -A"
@@ -39,3 +42,6 @@ if [ -f /etc/debian_version ]; then
     alias ack='ack-grep'
     alias node='nodejs'
 fi
+
+# use neo-vim
+alias vim=nvim

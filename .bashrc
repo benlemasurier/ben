@@ -18,6 +18,9 @@ source ~/.bash-aliases
 export HISTSIZE=                 # unlimited
 export HISTFILESIZE=             # unlimited
 export HISTCONTROL='ignoreboth'; # omit duplicates, anything beginning with a space
+shopt -s histappend              # append to history instead of overwriting it
+# after each command, append to history and re-read it
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # paths
 export CODE=$HOME/code/
@@ -28,6 +31,10 @@ export PATH=$PATH:/usr/local/packer
 
 # completion
 source ~/.bash-completion
+
+# less syntax highlighting (requires source-highlight)
+export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
+export LESS='-R '
 
 # development environment
 if [ -f "$HOME/.bash-development" ]; then
