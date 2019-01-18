@@ -34,7 +34,7 @@ source ~/.bash-completion
 
 # less syntax highlighting (requires source-highlight)
 export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
-export LESS='-R '
+# export LESS='-R '
 
 # development environment
 if [ -f "$HOME/.bash-development" ]; then

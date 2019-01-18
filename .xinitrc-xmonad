@@ -14,13 +14,19 @@ redshift &
 dunst &
 
 # background image
-feh --bg-scale $HOME/.config/wallpaper.jpg
+feh --bg-scale $HOME/.config/wallpaper.png
 
 # bar
 polybar default &
 
 # composite manager
 compton -b
+
+# suspend when inactive
+#xautolock -time 30 -locker "systemctl suspend" &
+
+# silly mouse speed
+xinput --set-prop "Razer Razer DeathAdder" 297 -1.0
 
 # start window manager
 exec xmonad

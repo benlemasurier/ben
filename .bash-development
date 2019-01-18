@@ -6,6 +6,8 @@ function pullall() {
   for i in *; do pushd .; cd "$i" || exit; git pull; popd; done;
 }
 
+export GPG_TTY=$(tty)
+
 # go
 export GOPATH=$HOME/code/go
 export GOHOME=$GOPATH/src/github.com/benlemasurier

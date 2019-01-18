@@ -32,8 +32,11 @@ Plugin 'vimwiki/vimwiki'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/deoplete.nvim'
+Plugin 'mdempsky/gocode', {'rtp': 'nvim/'}
+Plugin 'zchee/deoplete-go'
 Plugin 'SirVer/ultisnips'
 Plugin 'hashivim/vim-terraform'
+Plugin 'vim-scripts/bats.vim'
 call vundle#end()
 
 nmap <F8> :TagbarToggle<CR>
@@ -235,6 +238,11 @@ noremap <leader>a :cclose<CR>
 
 " automatically insert import paths
 let g:go_fmt_command = "goimports"
+let g:go_fmt_options = {'goimports': '-local=do'}
+
+" gofmt -s (simplify)
+"let g:go_fmt_command = "gofmt"
+"let g:go_fmt_options = "-s"
 
 " show a list of interfaces implemented by type under cursor
 autocmd Filetype go nmap <Leader>s <Plug>(go-implements)
