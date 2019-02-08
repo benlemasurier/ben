@@ -11,7 +11,8 @@ import XMonad.Util.NamedWindows
 import XMonad.Util.Scratchpad
 import XMonad.Util.EZConfig
 
-myTerminal = "urxvt"
+myTerminal = "alacritty"
+-- myTerminal = "urxvt"
 myLockScreen = "xwobf /tmp/.lock.png && i3lock -i /tmp/.lock.png"
 myLauncher = "rofi -show run"
 
@@ -49,7 +50,7 @@ defaults = defaultConfig {
     manageHook         = manageScratchPad <+> myManageHook,
     handleEventHook    = XMonad.Hooks.EwmhDesktops.fullscreenEventHook <+> docksEventHook
 } `additionalKeysP`
-    [ ("M-s",   scratchpadSpawnActionTerminal $ myTerminal)
+    [ ("M-s",   scratchpadSpawnActionTerminal $ "urxvt" )
     , ("M-S-l", spawn myLockScreen)
     , ("M-p",   spawn myLauncher)
     , ("<XF86AudioMute>",   spawn "amixer set Master toggle")

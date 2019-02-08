@@ -25,6 +25,9 @@ PATH=$PATH:.cabal-sandbox/bin
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+# rust cargo binaries
+export PATH=$PATH:/home/ben/.cargo/bin
+
 # debian packaging
 DEBEMAIL="ben.lemasurier@gmail.com"
 DEBFULLNAME="Ben LeMasurier"

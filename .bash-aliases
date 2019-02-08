@@ -3,6 +3,9 @@
 # modern `ls` replacement
 alias ls="exa"
 
+# modern `cat` replacement
+alias cat=bat
+
 alias cd..="cd .."
 alias random_password='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c16 && echo'
 

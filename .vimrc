@@ -12,28 +12,32 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'Align'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'morhetz/gruvbox'
 Plugin 'chriskempson/vim-tomorrow-theme.git'
 Plugin 'ColorSchemeMenuMaker'
 Plugin 'tmhedberg/matchit'
 Plugin 'majutsushi/tagbar'
 Plugin 'jimenezrick/vimerl'
 Plugin 'elixir-lang/vim-elixir'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-perl/vim-perl'
 Plugin 'bruno-/vim-man'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'nono/vim-handlebars'
 Plugin 'rust-lang/rust.vim'
+"Plugin 'autozimu/LanguageClient-neovim'
+Plugin 'junegunn/fzf'
 Plugin 'cespare/vim-toml'
 Plugin 'vivien/vim-linux-coding-style'
 Plugin 'uarun/vim-protobuf'
 Plugin 'vimwiki/vimwiki'
 Plugin 'tpope/vim-fugitive'
-Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/deoplete.nvim'
-Plugin 'mdempsky/gocode', {'rtp': 'nvim/'}
 Plugin 'zchee/deoplete-go'
+Plugin 'sebastianmarkow/deoplete-rust'
+Plugin 'mdempsky/gocode', {'rtp': 'nvim/'}
 Plugin 'SirVer/ultisnips'
 Plugin 'hashivim/vim-terraform'
 Plugin 'vim-scripts/bats.vim'
@@ -59,7 +63,8 @@ set autowrite
 " syntax highlighting
 syntax on
 set background=dark
-colorscheme hybrid
+"colorscheme hybrid
+colorscheme gruvbox
 
 " no swap files
 set noswapfile
@@ -232,10 +237,6 @@ map <C-p> :cprev<CR>
 noremap <leader>a :cclose<CR>
 
 
-" golint
-" FIXME: can this go away?
-"set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
-
 " automatically insert import paths
 let g:go_fmt_command = "goimports"
 let g:go_fmt_options = {'goimports': '-local=do'}
@@ -268,16 +269,14 @@ autocmd Filetype go nmap <leader>c <Plug>(go-coverage-toggle)
 " kernel development
 let g:linuxsty_patterns = [ "/usr/src/", "/linux", "/home/ben/code/linux" ]
 
-" neocomplete
-"let g:neocomplete#enable_at_startup = 1
-"
-" golang autocompletion
-"if !exists('g:neocomplete#sources#omni#input_patterns')
-"  let g:neocomplete#sources#omni#input_patterns = {}
-"endif
-"let g:neocomplete#sources#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
-
+" completion
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#rust#racer_binary='/home/ben/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/home/ben/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+let g:deoplete#sources#rust#show_duplicates=1
+let g:deoplete#sources#go#unimported_packages=1
+" prevent completion from opening in scratch window 
+set completeopt-=preview
 
 " ctags
 set tags=tags;$HOME
