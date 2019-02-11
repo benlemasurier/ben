@@ -6,6 +6,7 @@ filetype off        " required by vundle
 " vundle setup and initialization
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'vim-syntastic/syntastic'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'fatih/vim-go'
 Plugin 'vim-ruby/vim-ruby'
@@ -34,10 +35,11 @@ Plugin 'vivien/vim-linux-coding-style'
 Plugin 'uarun/vim-protobuf'
 Plugin 'vimwiki/vimwiki'
 Plugin 'tpope/vim-fugitive'
+Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/deoplete.nvim'
+Plugin 'mdempsky/gocode', {'rtp': 'nvim/'}
 Plugin 'zchee/deoplete-go'
 Plugin 'sebastianmarkow/deoplete-rust'
-Plugin 'mdempsky/gocode', {'rtp': 'nvim/'}
 Plugin 'SirVer/ultisnips'
 Plugin 'hashivim/vim-terraform'
 Plugin 'vim-scripts/bats.vim'
@@ -236,6 +238,10 @@ map <C-n> :cnext<CR>
 map <C-p> :cprev<CR>
 noremap <leader>a :cclose<CR>
 
+" location-list navigation
+"map <C-j> :lnext<CR>
+"map <C-k> :lprev<CR>
+noremap <leader>s :lclose<CR>
 
 " automatically insert import paths
 let g:go_fmt_command = "goimports"
@@ -269,14 +275,36 @@ autocmd Filetype go nmap <leader>c <Plug>(go-coverage-toggle)
 " kernel development
 let g:linuxsty_patterns = [ "/usr/src/", "/linux", "/home/ben/code/linux" ]
 
-" completion
-let g:deoplete#enable_at_startup = 1
+" ctags
+set tags=tags;$HOME
+
+" rust
+let g:rustfmt_autosave = 1 
 let g:deoplete#sources#rust#racer_binary='/home/ben/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path='/home/ben/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 let g:deoplete#sources#rust#show_duplicates=1
+" cargo build
+autocmd Filetype rust nmap <leader>b :Cbuild<CR>
+autocmd Filetype rust nmap <leader>t :RustTest!<CR>
+
+let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#go#unimported_packages=1
 " prevent completion from opening in scratch window 
 set completeopt-=preview
 
-" ctags
-set tags=tags;$HOME
+" syntax checking (syntastic)
+" enable/disable syntastic integration for vim-airline
+let g:airline#extensions#syntastic#enabled = 1
+" syntastic error_symbol >
+let airline#extensions#syntastic#error_symbol = 'E:'
+" syntastic statusline error format (see |syntastic_stl_format|) >
+let airline#extensions#syntastic#stl_format_err = '%E{[%e(#%fe)]}'
+" syntastic warning >
+let airline#extensions#syntastic#warning_symbol = 'W:'
+" syntastic statusline warning format (see |syntastic_stl_format|) >
+let airline#extensions#syntastic#stl_format_warn = '%W{[%w(#%fw)]}'
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
