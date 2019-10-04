@@ -26,7 +26,8 @@ compton -b
 #xautolock -time 30 -locker "systemctl suspend" &
 
 # silly mouse speed
-xinput --set-prop "Razer Razer DeathAdder" 297 -1.0
+#xinput --set-prop "Razer Razer DeathAdder" 297 -1.0
+xinput --set-prop "Razer Razer DeathAdder" 343 -1.0
 
 # start window manager
 exec xmonad

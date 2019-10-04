@@ -8,8 +8,8 @@ export LC_ALL='en_US.UTF-8';
 # terminal configuration
 source ~/.bash-terminal
 
-# Make vim the default editor.
-export EDITOR='vim';
+# Make nvim the default editor.
+export EDITOR='nvim';
 
 # aliases
 source ~/.bash-aliases
@@ -47,8 +47,8 @@ if [ -f "$HOME/.doenv" ]; then
 fi
 
 # secrets
-if [ -f "$HOME/.bash_secrets" ]; then
-        source "$HOME/.bash_secrets"
+if [ -f "$HOME/.env_secrets" ]; then
+        source "$HOME/.env_secrets"
 fi
 
 # misc

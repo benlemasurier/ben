@@ -12,7 +12,7 @@
 	gpgSign = true
 
 [core]
-	editor = /usr/bin/vim
+	editor = /usr/bin/nvim
 
 [color]
 	diff = auto
@@ -24,3 +24,7 @@
 
 [status]
 	showUntrackedFiles = all
+
+[url "git@github.com:"]
+    insteadOf = git://github.com/
+    insteadOf = https://github.com/

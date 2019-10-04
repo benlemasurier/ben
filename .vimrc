@@ -7,7 +7,7 @@ filetype off        " required by vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'vim-syntastic/syntastic'
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'fatih/vim-go'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'Align'
@@ -17,9 +17,6 @@ Plugin 'morhetz/gruvbox'
 Plugin 'chriskempson/vim-tomorrow-theme.git'
 Plugin 'ColorSchemeMenuMaker'
 Plugin 'tmhedberg/matchit'
-Plugin 'majutsushi/tagbar'
-Plugin 'jimenezrick/vimerl'
-Plugin 'elixir-lang/vim-elixir'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-perl/vim-perl'
@@ -28,7 +25,6 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'nono/vim-handlebars'
 Plugin 'rust-lang/rust.vim'
-"Plugin 'autozimu/LanguageClient-neovim'
 Plugin 'junegunn/fzf'
 Plugin 'cespare/vim-toml'
 Plugin 'vivien/vim-linux-coding-style'
@@ -40,12 +36,9 @@ Plugin 'Shougo/deoplete.nvim'
 Plugin 'mdempsky/gocode', {'rtp': 'nvim/'}
 Plugin 'zchee/deoplete-go'
 Plugin 'sebastianmarkow/deoplete-rust'
-Plugin 'SirVer/ultisnips'
 Plugin 'hashivim/vim-terraform'
-Plugin 'vim-scripts/bats.vim'
 call vundle#end()
-
-nmap <F8> :TagbarToggle<CR>
+filetype plugin indent on    " required by vundle
 
 " set terminal title to filename
 set title
@@ -208,6 +201,11 @@ au BufNewFile,BufRead *.erl,*.es,*.hrl,*.yaws,*.xrl setf erlang
 
 " vimwiki
 autocmd Filetype vimwiki set expandtab tabstop=4 softtabstop=0 shiftwidth=4 listchars+=tab:>- textwidth=80 wrap linebreak nolist
+
+" e-mail editing
+autocmd Filetype mail set tw=72 fo=watqc nojs nosmartindent
+" mark trailing spaces showing flowed format correctness
+autocmd Filetype mail match ErrorMsg '\s\+$'
 
 " golang
 let g:go_highlight_chan_whitespace_error = 1
