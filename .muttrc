@@ -1,0 +1,83 @@
+set from = 'ben@crypt.ly'
+set realname = 'Ben LeMasurier'
+
+set move = no
+set mbox_type = 'Maildir'
+
+set editor = "nvim -c 'set spell spelllang=en'"
+
+bind index G imap-fetch-mail
+
+# keep copies of sent mail
+set copy
+
+set header_cache = '~/.mutt/cache/headers'
+set message_cachedir = '~/.mutt/cache/bodies'
+set certificate_file= '~/.mutt/certificates'
+
+# smtp configuration
+set smtp_url = 'smtp://ben@crypt.ly@mail.crypt.ly:587/'
+set smtp_pass = `pass mail.crypt.ly/ben`
+
+# imap configuration
+set imap_user = 'ben@crypt.ly'
+set imap_pass = `pass mail.crypt.ly/ben`
+set imap_keepalive = 900
+set ssl_starttls = yes
+set ssl_force_tls = yes
+set imap_check_subscribed
+
+set folder = "imaps://mail.crypt.ly/INBOX"
+set spoolfile = "imaps://mail.crypt.ly/"
+set record = '=Sent'
+set postponed = '=Drafts'
+
+mailboxes =INBOX
+
+# display settings
+set pager_context = 5	    # retain 5 lines of previous page when scrolling
+set sort=threads
+set sort_aux=date
+set text_flowed
+
+# header display
+ignore User-Agent
+
+set index_format="%4C | %Z %{%b %d} %-30.30L %s"
+
+# colors
+source ~/.mutt/colors-gruvbox-shuber.muttrc
+source ~/.mutt/colors-gruvbox-shuber-extended.muttrc
+set allow_ansi
+
+# encryption
+
+# use gpgme
+set crypt_use_gpgme = yes
+
+# sign replies to signed email
+set crypt_replysign = yes
+
+# encrypt replies to encrypted email
+set crypt_replyencrypt = yes
+
+# encrypt and sign replies to encrypted and signed email
+set crypt_replysignencrypted = yes
+
+# attempt to verify email signatures automatically
+set crypt_verify_sig = yes
+
+# sidebar
+set sidebar_visible
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set sidebar_short_path # shorten mailbox names
+set sidebar_width = 25
+set mail_check_stats
+bind index,pager B sidebar-toggle-visible   # 'B' to show/hide sidebar
+bind index,pager \CP sidebar-prev	    # ctrl-shift-p: previous mailbox
+bind index,pager \CN sidebar-next	    # ctrl-shift-n: next mailbox
+bind index,pager \CO sidebar-open	    # ctrl-shift-o: open mailbox
+
+# html e-mail was a mistake
+auto_view text/html
+alternative_order text/plain text/enriched text/html
