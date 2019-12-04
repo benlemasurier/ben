@@ -1,7 +1,9 @@
 # bash completion
-
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-source ~/.git-completion
+# git completion
+if [ -f ~/.git-completion ]; then
+    source ~/.git-completion
+fi

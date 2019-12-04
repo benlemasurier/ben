@@ -59,3 +59,5 @@ man() {
         LESS_TERMCAP_us=$(printf "\e[1;32m") \
             man "$@"
 }
+
+export MANPAGER='less -X'; # don't clear after quitting `man`

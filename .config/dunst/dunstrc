@@ -3,16 +3,16 @@
     allow_markup = yes
     bounce_freq = 0
     follow = mouse
-    font = "Terminess Powerline 20"
+    font = "mononoki 12"
     format = "<b>%s</b>\n%b"
-    geometry = "400x5-6+30"
-    horizontal_padding = 8
+    geometry = "600x5-6+30"
+    horizontal_padding = 20
     idle_threshold = 120
     ignore_newline = no
     indicate_hidden = yes
     line_height = 0
     monitor = 0
-    padding = 8
+    padding = 20
     separator_color = frame
     separator_height = 1
     show_age_threshold = 60
@@ -39,7 +39,7 @@
 
 [urgency_normal]
     background = "#181818"
-    foreground = "#E3C7AF"
+    foreground = "#aed7e3"
     timeout = 20
 
 [urgency_critical]

@@ -1,44 +1,30 @@
 " requires vundle to manage plugins: http://github.com/gmarik/vundle
+" requires vim-plug:
+" curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+"   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-set nocompatible    " vim required
-filetype off        " required by vundle
-
-" vundle setup and initialization
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'vim-syntastic/syntastic'
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'fatih/vim-go'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'Align'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'morhetz/gruvbox'
-Plugin 'chriskempson/vim-tomorrow-theme.git'
-Plugin 'ColorSchemeMenuMaker'
-Plugin 'tmhedberg/matchit'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vim-perl/vim-perl'
-Plugin 'bruno-/vim-man'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'nono/vim-handlebars'
-Plugin 'rust-lang/rust.vim'
-Plugin 'junegunn/fzf'
-Plugin 'cespare/vim-toml'
-Plugin 'vivien/vim-linux-coding-style'
-Plugin 'uarun/vim-protobuf'
-Plugin 'vimwiki/vimwiki'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'mdempsky/gocode', {'rtp': 'nvim/'}
-Plugin 'zchee/deoplete-go'
-Plugin 'sebastianmarkow/deoplete-rust'
-Plugin 'hashivim/vim-terraform'
-call vundle#end()
-filetype plugin indent on    " required by vundle
+call plug#begin(stdpath('data') . '/plugged')
+Plug 'benlemasurier/cscope-maps'
+Plug 'bruno-/vim-man'
+Plug 'cespare/vim-toml'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'fatih/vim-go'
+Plug 'hashivim/vim-terraform'
+Plug 'junegunn/fzf'
+Plug 'morhetz/gruvbox'
+Plug 'pangloss/vim-javascript'
+Plug 'rust-lang/rust.vim'
+Plug 'tmhedberg/matchit'
+Plug 'tpope/vim-fugitive'
+Plug 'uarun/vim-protobuf'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-perl/vim-perl'
+Plug 'vim-ruby/vim-ruby'
+Plug 'vim-syntastic/syntastic'
+Plug 'vimwiki/vimwiki'
+Plug 'vivien/vim-linux-coding-style'
+call plug#end()
 
 " set terminal title to filename
 set title
@@ -49,16 +35,12 @@ set mouse=a
 " leader key = ,
 let mapleader=","
 
-" always cd to current file
-"set autochdir
-
 " auto-save on build
 set autowrite
 
 " syntax highlighting
 syntax on
 set background=dark
-"colorscheme hybrid
 colorscheme gruvbox
 
 " no swap files
@@ -75,7 +57,7 @@ set ruler
 set ruler
 
 " scrolling
-set scrolloff=8 "Start scrolling 8 lines from margin
+set scrolloff=8 " Start scrolling 8 lines from margin
 set sidescrolloff=15
 set sidescroll=1
 
@@ -86,11 +68,11 @@ set listchars+=tab:\ \    " tabs (don't show them)
 set listchars+=extends:#  " line wrap
 set listchars+=nbsp:.     " non-breaking spaces
 
-" enable 256 color support
-set t_Co=256
-
 " make the quickfix readable
 hi QuickFixLine ctermbg=NONE
+
+" respect modelines
+set modeline
 
 " indentation
 filetype on
@@ -146,6 +128,16 @@ hi clear xxx
 " don't highlight html links
 hi link htmlLink NONE
 
+" completion search
+" - current buffer
+" - buffers in other windows
+" - other loaded buffers
+" - unloaded buffers
+" - tags
+" - included files
+" - dictionary when spellcheck is enabled
+set complete=.,w,b,u,t,i,kspell
+
 " remove trailing spaces on save
 "autocmd BufWritePre * kz|:%s/\s\+$//e|'z
 
@@ -160,9 +152,11 @@ let g:airline_powerline_fonts = 1
 
 autocmd Filetype make set noexpandtab softtabstop=0
 autocmd Filetype perl set noexpandtab softtabstop=0
+autocmd Filetype markdown setlocal spell textwidth=80
 
-" haskell: no tabs, 4 spaces for indent
-autocmd Filetype haskell set expandtab tabstop=4 softtabstop=0 shiftwidth=4 listchars+=tab:>-
+autocmd Filetype mail set tw=72 fo=watqc cc=+1 spell nojs nosmartindent
+" (mail) mark trailing spaces showing flowed format correctness
+autocmd Filetype mail match ErrorMsg '\s\+$'
 
 " ruby: no tabs, 2 spaces for indent
 autocmd Filetype ruby set expandtab tabstop=2 softtabstop=0 shiftwidth=2 listchars+=tab:>-
@@ -176,12 +170,7 @@ autocmd Filetype json set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listcha
 
 " html: no tabs, 2 spaces for indent
 autocmd Filetype html set expandtab tabstop=2 softtabstop=0 shiftwidth=2 listchars+=tab:>-
-
-" html: no tabs, 2 spaces for indent
 autocmd Filetype css set expandtab tabstop=2 softtabstop=2 shiftwidth=2 listchars+=tab:>-
-
-" handlebars : no tabs, 2 spaces for indent
-autocmd Filetype handlebars.html set expandtab tabstop=2 softtabstop=0 shiftwidth=2 listchars+=tab:>-
 
 " haskell, no tabs, 4 spaces for indent
 autocmd Filetype haskell set expandtab tabstop=4 softtabstop=4 shiftwidth=4 listchars+=tab:>-
@@ -189,23 +178,11 @@ autocmd Filetype haskell set expandtab tabstop=4 softtabstop=4 shiftwidth=4 list
 " bash: no tabs, 4 spaces for indent
 autocmd Filetype sh set expandtab tabstop=4 softtabstop=0 shiftwidth=4 listchars+=tab:>-
 
-" rust: no tabs, 4 spaces for indent
-autocmd Filetype sh set expandtab tabstop=4 softtabstop=0 shiftwidth=4 listchars+=tab:>-
-
 " sql: no tabs, 4 spaces for indent
 autocmd Filetype sql set expandtab tabstop=4 softtabstop=0 shiftwidth=4 listchars+=tab:>-
 
-" erlang
-autocmd BufRead,BufNewFile *.erl,*.es.*.hrl,*.yaws,*.xrl set expandtab
-au BufNewFile,BufRead *.erl,*.es,*.hrl,*.yaws,*.xrl setf erlang
-
 " vimwiki
 autocmd Filetype vimwiki set expandtab tabstop=4 softtabstop=0 shiftwidth=4 listchars+=tab:>- textwidth=80 wrap linebreak nolist
-
-" e-mail editing
-autocmd Filetype mail set tw=72 fo=watqc nojs nosmartindent
-" mark trailing spaces showing flowed format correctness
-autocmd Filetype mail match ErrorMsg '\s\+$'
 
 " golang
 let g:go_highlight_chan_whitespace_error = 1
@@ -245,10 +222,6 @@ noremap <leader>s :lclose<CR>
 let g:go_fmt_command = "goimports"
 let g:go_fmt_options = {'goimports': '-local=do'}
 
-" gofmt -s (simplify)
-"let g:go_fmt_command = "gofmt"
-"let g:go_fmt_options = "-s"
-
 " show a list of interfaces implemented by type under cursor
 autocmd Filetype go nmap <Leader>s <Plug>(go-implements)
 
@@ -273,20 +246,12 @@ autocmd Filetype go nmap <leader>c <Plug>(go-coverage-toggle)
 " kernel development
 let g:linuxsty_patterns = [ "/usr/src/", "/linux", "/home/ben/code/linux" ]
 
+" ansible + syntastic
+au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+
 " ctags
 set tags=tags;$HOME
 
-" rust
-let g:rustfmt_autosave = 1 
-let g:deoplete#sources#rust#racer_binary='/home/ben/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/home/ben/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
-let g:deoplete#sources#rust#show_duplicates=1
-" cargo build
-autocmd Filetype rust nmap <leader>b :Cbuild<CR>
-autocmd Filetype rust nmap <leader>t :RustTest!<CR>
-
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#go#unimported_packages=1
 " prevent completion from opening in scratch window 
 set completeopt-=preview
 
@@ -306,3 +271,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+""" rust
+" cargo build
+autocmd Filetype rust nmap <leader>b :Cbuild<CR>
+autocmd Filetype rust nmap <leader>t :RustTest!<CR>

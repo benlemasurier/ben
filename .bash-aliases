@@ -14,12 +14,6 @@ alias grep='grep --color=auto';
 
 # copy to clipboard
 alias pbcopy='xsel --clipboard --input'
-#if [ -f /usr/bin/xclip ]; then
-#    alias pbcopy="xclip -sel -r clip"
-#fi
-
-# always forward ssh key
-alias ssh="ssh -A"
 
 # spin up a http server
 alias serve="python2 -m SimpleHTTPServer"
@@ -45,3 +39,6 @@ fi
 
 # use neo-vim
 alias vim=nvim
+
+# use neo-mutt
+alias mutt=neomutt

@@ -1,9 +1,9 @@
 ! ------------------------------------------------------------------------------
 ! rofi launcher
 ! ------------------------------------------------------------------------------
-rofi.font: Terminess 14
-rofi.width: 30
-rofi.lines: 5
+rofi.font: mononoki 14
+rofi.width: 15
+rofi.lines: 3
 
 rofi.color-enabled: true
 rofi.color-window: #273238, #273238, #1e2529
